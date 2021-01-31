@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { Dish } from "../data/Models";
-
   import { getSpacecraftDetails } from "../util/utils";
   import AzimuthViz from "./AzimuthViz.svelte";
   import ElevationViz from "./ElevationViz.svelte";
@@ -8,30 +7,26 @@
   export let dish: Dish = null;
 </script>
 
-<article class="dish-container">
+<article class="dish-container {dish['metadata']['status']}">
   <div class="dish-details">
     <h2>{dish["@name"]}</h2>
     <p>{dish["@updated"]}</p>
-    <p>{dish["target"] && dish["target"]["@name"]}</p>
-    {#if dish["target"]}
-      <p>{getSpacecraftDetails(dish["target"]["@id"])["longName"]}</p>
+    {#if dish["target"].length > 0 && dish["target"][0]["@name"]}
+      <p>{dish["target"][0]["@name"]}</p>
+      <p>{getSpacecraftDetails(dish["target"][0])["longName"]}</p>
     {/if}
   </div>
   <!-- <div class="dish-viz" /> -->
-  <ElevationViz elevationAngle={dish["@elevationAngle"]} />
-  <AzimuthViz azimuthAngle={dish["@azimuthAngle"]} />
+  <div class="viz-row">
+    <ElevationViz elevationAngle={dish["@elevationAngle"]} />
+    <AzimuthViz azimuthAngle={dish["@azimuthAngle"]} />
+  </div>
 </article>
 
 <style>
   .dish-container {
-    /* background-color: lightsteelblue;
-    padding: 8px;
-    border-radius: 3px;
-    box-shadow: 2px 2px 5px #00000018;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    flex-grow: 1; */
+    width: 400px;
+    height: 400px;
     line-height: 1.5;
     overflow-wrap: break-word;
     background: #fafbfc;
@@ -44,14 +39,14 @@
     box-sizing: border-box;
     border-color: rgb(226, 232, 240);
   }
-  .dish-viz {
-    height: 120px;
-    width: 120px;
-    flex-grow: 1;
-    background-color: crimson;
-    margin: 0 10px;
+
+  .OFFLINE {
+    background: #778899;
+  }
+
+  .viz-row {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
   }
 </style>

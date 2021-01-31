@@ -1,7 +1,9 @@
 <script lang="ts">
+  import type { DSNData } from "../data/Models";
+
   import { getStationByDishName } from "../util/utils";
 
-  export let DSNData = null;
+  export let DSNData: DSNData = null;
   export let latestRequest: string = "";
   export let nextRequest: number = 0;
   export let dataTimestamp: string = "";
@@ -10,9 +12,10 @@
     Madrid: 0,
     Canberra: 0,
   };
+  let dishesOnline = 0;
   $: {
     if (DSNData) {
-      updateStationCount(DSNData.dish);
+      updateStationCount(DSNData.dishes);
       updateTimestamps(DSNData);
     }
   }
@@ -26,11 +29,12 @@
     for (let dish of dishes) {
       // for each dish, incr the temp count for respective station
       const stationName = getStationByDishName(dish["@name"]);
-      if (stationName) {
+      if (stationName && dish["metadata"]["status"] === "ONLINE") {
         tempCount[stationName] = tempCount[stationName] + 1;
       }
     }
     dishesByStation = { ...tempCount };
+    dishesOnline = Object.values(tempCount).reduce((acc, v) => acc + v);
   };
 
   const updateTimestamps = (data: any): void => {
@@ -46,7 +50,7 @@
     <p>Data Timestamp: {dataTimestamp}</p>
     <p>Latest Request: {latestRequest}</p>
     <p>Next Request: {nextRequest ? nextRequest + "s" : "Loading..."}</p>
-    <p>Dishes Online: {DSNData["dish"].length}</p>
+    <p>Dishes Online: {dishesOnline}</p>
     <p>Goldstone: {dishesByStation["Goldstone"]}</p>
     <p>Madrid: {dishesByStation["Madrid"]}</p>
     <p>Canberra: {dishesByStation["Canberra"]}</p>

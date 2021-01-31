@@ -1,15 +1,13 @@
 <script lang="ts">
-  import xml2json from "../util/xml2json";
-  import { getStationByDishName } from "../util/utils";
   import Summary from "./Summary.svelte";
   import DishCard from "./DishCard.svelte";
-  import type { Dish } from "../data/Models";
-  const parser = new DOMParser();
+  import { processDSNResponse } from "../util/utils";
+  import type { DSNData } from "../data/Models";
   const dsnURL: string = "https://eyes.nasa.gov/dsn/data/dsn.xml";
   let latestRequest: string = "";
   let nextRequest: number = 10;
 
-  let DSNData = getDSNData();
+  let DSNData: Promise<DSNData> = getDSNData();
   // TODO: customize interval
   // setInterval(async () => {
   //   if (nextRequest <= 0) {
@@ -20,34 +18,19 @@
   //     nextRequest -= 1;
   //   }
   // }, 1000);
-  async function getDSNData() {
+  async function getDSNData(): Promise<DSNData> {
     latestRequest = new Date().toLocaleString();
     try {
+      // Request DSN Data
       const res = await fetch(dsnURL);
-      const text = await res.text();
-      return parseDSNData(text);
+
+      // Async process the XML response
+      return await processDSNResponse(res);
     } catch {
       const err = "Error fetching data.";
       console.error(err);
       throw new Error(err);
     }
-  }
-
-  function parseDSNData(
-    data
-  ): { dish: Dish[]; station: any[]; timestamp: string } {
-    const xmlDoc = parser.parseFromString(data, "text/xml");
-    const { dsn } = JSON.parse(xml2json(xmlDoc, ""));
-    console.log("DSN JSON:", dsn);
-    // TODO: create new Util for serialization and merging with default dish data
-    let cleanData = dsn;
-    cleanData["dish"] = cleanData["dish"].filter((dish) => {
-      const dsArray = Array.isArray(dish["downSignal"]);
-      const usArray = Array.isArray(dish["upSignal"]);
-      const targetArray = Array.isArray(dish["target"]);
-      return !(dsArray || usArray || targetArray);
-    });
-    return cleanData;
   }
 </script>
 
@@ -56,7 +39,7 @@
 {:then data}
   <Summary DSNData={data} {latestRequest} {nextRequest} />
   <div class="dish-grid">
-    {#each data["dish"] as dish (dish["@name"])}
+    {#each data["dishes"] as dish (dish["@name"])}
       <DishCard {dish} />
     {/each}
   </div>

@@ -1,3 +1,14 @@
+export interface DSNData {
+  dishes: Dish[];
+  stations: Station[] | any[]; //TODO: Model stations
+  timestamp: string;
+}
+export interface DSNResponse {
+  dish: Partial<Dish[]>;
+  station: Station[] | any[]; //TODO: Model stations
+  timestamp: string;
+}
+
 export interface Dish {
   "@name": string;
   "@azimuthAngle": string;
@@ -8,10 +19,11 @@ export interface Dish {
   "@isDDOR": "true" | "false";
   "@created": string;
   "@updated": string;
-  downSignal: DownSignalEntry | DownSignalEntry[];
-  upSignal: UpSignalEntry | UpSignalEntry[];
-  target: TargetEntry | TargetEntry[];
+  downSignal: DownSignalEntry[];
+  upSignal: UpSignalEntry[];
+  target: TargetEntry[];
   metadata: {
+    status: "OFFLINE" | "ONLINE";
     station: "Goldstone" | "Canberra" | "Madrid";
   };
 }
@@ -27,6 +39,8 @@ export interface Source {
   title: string;
   url: string;
 }
+
+export interface Station {}
 
 export interface DownSignalEntry {
   "@signalType": "data" | "carrier" | "none";
