@@ -110,3 +110,26 @@ function serializeResponseDish(dish: Partial<Dish>): any {
     },
   };
 }
+
+export const getHumanReadableRange = (range: string): string => {
+  // If there is no range provided, or invalid range
+  if (!range || range.trim().length === 0 || Number(range) <= 0) {
+    return "N/A";
+  }
+  const rangeNum = Number(range);
+  if (rangeNum > 999_999_999) {
+    // if billions
+    let xBillion = rangeNum / 1_000_000_000;
+    return `${xBillion.toFixed(2)} billion km`;
+  } else if (rangeNum > 999_999) {
+    // if millions
+    let xMillion = rangeNum / 1_000_000;
+    return `${xMillion.toFixed(2)} million km`;
+  } else if (rangeNum > 999) {
+    // if thousands
+    let xThousand = rangeNum / 1_000;
+    return `${xThousand.toFixed(2)} thousand km`;
+  } else {
+    return `${rangeNum.toFixed(2)} km`;
+  }
+};
