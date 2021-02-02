@@ -1,4 +1,10 @@
 :root {
+  --black-0: #161616;
+  --black-alpha: #272a3588;
+  --black-1: #272a35;
+  --white-1: #eef5fb;
+  --blue-1: #04e9e9;
+  --coral-1: #ff8484;
   --truncate: {
     white-space: nowrap;
     overflow: hidden;
@@ -14,13 +20,17 @@ body {
 }
 
 body {
-  color: #333;
+  color: var(--white-1);
   margin: 0;
   box-sizing: border-box;
   font-size: 16px;
   font-family: "Courier New", Courier, monospace;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizelegibility;
+}
+
+body * {
+  box-sizing: border-box;
 }
 
 a {
@@ -34,44 +44,4 @@ a:hover {
 
 a:visited {
   color: rgb(0, 80, 160);
-}
-
-label {
-  display: block;
-}
-
-input,
-button,
-select,
-textarea {
-  font-family: inherit;
-  font-size: inherit;
-  -webkit-padding: 0.4em 0;
-  padding: 0.4em;
-  margin: 0 0 0.5em 0;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 2px;
-}
-
-input:disabled {
-  color: #ccc;
-}
-
-button {
-  color: #333;
-  background-color: #f4f4f4;
-  outline: none;
-}
-
-button:disabled {
-  color: #999;
-}
-
-button:not(:disabled):active {
-  background-color: #ddd;
-}
-
-button:focus {
-  border-color: #666;
 }

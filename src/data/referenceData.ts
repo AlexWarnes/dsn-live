@@ -211,6 +211,50 @@ export const spacecraftMap = {
     longName: "Testing",
     sources: [],
   } as Spacecraft,
+  61: {
+    id: "61",
+    shortName: "JNO",
+    longName: "Juno",
+    sources: [
+      {
+        title: "Juno, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Juno_(spacecraft)",
+      },
+    ],
+  } as Spacecraft,
+  78: {
+    id: "78",
+    shortName: "DSCO",
+    longName: "Deep Space Climate Observatory",
+    sources: [
+      {
+        title: "Deep Space Climate Observatory, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Deep_Space_Climate_Observatory",
+      },
+    ],
+  } as Spacecraft,
+  217: {
+    id: "217",
+    shortName: "GBRA",
+    longName: "Ground Based Radio Astronomy",
+    sources: [
+      {
+        title: "Radio Telescope, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Radio_telescope",
+      },
+    ],
+  } as Spacecraft,
+  108: {
+    id: "108",
+    shortName: "MMS1",
+    longName: "Magnetospheric Multiscale Mission 1",
+    sources: [
+      {
+        title: "Magnetospheric Multiscale Mission, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Magnetospheric_Multiscale_Mission",
+      },
+    ],
+  } as Spacecraft,
 };
 
 export const defaultDishList: Dish[] = [
