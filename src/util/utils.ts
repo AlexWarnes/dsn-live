@@ -120,15 +120,15 @@ export const getHumanReadableRange = (range: string): string => {
   if (rangeNum > 999_999_999) {
     // if billions
     let xBillion = rangeNum / 1_000_000_000;
-    return `${xBillion.toFixed(2)} billion km`;
+    return `${xBillion.toFixed(2)}B km`;
   } else if (rangeNum > 999_999) {
     // if millions
     let xMillion = rangeNum / 1_000_000;
-    return `${xMillion.toFixed(2)} million km`;
+    return `${xMillion.toFixed(2)}M km`;
   } else if (rangeNum > 999) {
     // if thousands
     let xThousand = rangeNum / 1_000;
-    return `${xThousand.toFixed(2)} thousand km`;
+    return `${xThousand.toFixed(2)}K km`;
   } else {
     return `${rangeNum.toFixed(2)} km`;
   }

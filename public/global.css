@@ -5,6 +5,7 @@
   --white-1: #eef5fb;
   --blue-1: #04e9e9;
   --coral-1: #ff8484;
+  --blue: #1162fe;
   --truncate: {
     white-space: nowrap;
     overflow: hidden;
@@ -31,6 +32,22 @@ body {
 
 body * {
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--black-0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--blue);
+}
+
+.abs {
+  position: absolute;
 }
 /* 
 a {

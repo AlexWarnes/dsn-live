@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Summary from "./Summary.svelte";
-  import DishCard from "./DishCard.svelte";
-  import { processDSNResponse } from "../util/utils";
-  import type { DSNData } from "../data/Models";
+  import Summary from "../Summary.svelte";
+  import DishCard from "../DishCard.svelte";
+  import { processDSNResponse } from "../../util/utils";
+  import type { DSNData } from "../../data/Models";
   const dsnURL: string = "https://eyes.nasa.gov/dsn/data/dsn.xml";
   let latestRequest: string = "";
   let nextRequest: number = 10;

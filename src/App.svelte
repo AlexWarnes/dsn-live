@@ -1,24 +1,74 @@
 <script lang="ts">
-  import Dashboard from "./components/Dashboard.svelte";
-  import { Header, Button, Icon } from "carbon-components-svelte";
-  import Launch16 from "carbon-icons-svelte/lib/Launch16";
+  import Router from "svelte-spa-router";
+  import routes from "./routes";
+
+  import {
+    Header,
+    Button,
+    Icon,
+    OverflowMenu,
+    OverflowMenuItem,
+    HeaderNavItem,
+    HeaderNavMenu,
+    ToolbarMenu,
+    ToolbarMenuItem,
+    HeaderUtilities,
+    HeaderAction,
+    HeaderPanelLinks,
+    HeaderPanelDivider,
+    HeaderPanelLink,
+  } from "carbon-components-svelte";
+  import SatelliteRadar24 from "carbon-icons-svelte/lib/SatelliteRadar24";
+  import Notebook24 from "carbon-icons-svelte/lib/Notebook24";
+  import EarthEuropeAfrica24 from "carbon-icons-svelte/lib/EarthEuropeAfrica24";
+  let isOpen = false;
+  let vw;
 </script>
 
-<Header platformName="Deep Space Network">
-  <div class="flex-spacer" />
-  <Button
-    class="dsn-btn"
-    href="https://eyes.nasa.gov/dsn/dsn.html"
-    target="_blank"
-  >
-    Learn More
-    <Icon render={Launch16} class="tooltip-icon" />
-  </Button>
-</Header>
+<svelte:window bind:innerWidth={vw} />
+{#if vw > 875}
+  <Header platformName="Deep Space Network">
+    <div class="flex-spacer" />
+    <span class="nav-btn-wrapper">
+      <Button href="/#/dashboard" kind="ghost" icon={SatelliteRadar24}
+        >DASHBOARD</Button
+      >
+    </span>
+    <span class="nav-btn-wrapper">
+      <Button href="/#/about" kind="ghost" icon={Notebook24}>ABOUT</Button>
+    </span>
+  </Header>
+{:else}
+  <Header platformName="Deep Space Network">
+    <div class="flex-spacer" />
+    <HeaderUtilities>
+      <HeaderAction bind:isOpen>
+        <HeaderPanelLinks>
+          <span class="nav-menu-wrapper">
+            <HeaderPanelLink href="/#/">
+              <!-- <Icon render={EarthEuropeAfrica24} /> -->
+              HOME</HeaderPanelLink
+            >
+            <HeaderPanelLink href="/#/dashboard">
+              <!-- <Icon render={SatelliteRadar24} /> -->
+              DASHBOARD</HeaderPanelLink
+            >
+            <HeaderPanelLink href="/#/about">
+              <!-- <Icon render={Notebook24} /> -->
+              ABOUT</HeaderPanelLink
+            >
+            <span class="nav-menu-wrapper" /></span
+          ></HeaderPanelLinks
+        >
+      </HeaderAction>
+    </HeaderUtilities>
+  </Header>
+{/if}
 <main>
   <h1>DSN Live</h1>
   <p class="credit">All data courtesy of NASA/JPL</p>
-  <Dashboard />
+  <!-- <Dashboard /> -->
+  <Router {routes} />
 </main>
 
 <style>
@@ -26,9 +76,20 @@
     flex-grow: 1;
   }
 
-  .dsn-btn a {
+  .nav-btn-wrapper :global(a) {
     color: var(--white-1);
     text-decoration: none;
+    font-weight: 600;
+    margin: 0 12px;
+  }
+
+  .nav-menu-wrapper :global(a) {
+    display: flex;
+    align-items: center;
+    margin: 12px 0;
+  }
+  .nav-menu-wrapper :global(svg) {
+    margin: 0 10px 0 0;
   }
 
   .credit {

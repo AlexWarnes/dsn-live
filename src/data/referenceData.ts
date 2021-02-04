@@ -17,18 +17,6 @@ export const dishToStationMap = {
 };
 
 export const spacecraftMap = {
-  110: {
-    id: "110",
-    shortName: "MMS3",
-    longName: "Magnetospheric Multiscale Mission 3",
-    sources: [
-      {
-        title: "Magnetospheric Multiscale Mission, Wikipedia",
-        url: "https://en.wikipedia.org/wiki/Magnetospheric_Multiscale_Mission",
-      },
-    ],
-  } as Spacecraft,
-
   96: {
     id: "96",
     shortName: "SPP",
@@ -269,6 +257,39 @@ export const spacecraftMap = {
       {
         title: "Magnetospheric Multiscale Mission, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Magnetospheric_Multiscale_Mission",
+      },
+    ],
+  } as Spacecraft,
+  110: {
+    id: "110",
+    shortName: "MMS3",
+    longName: "Magnetospheric Multiscale Mission 3",
+    sources: [
+      {
+        title: "Magnetospheric Multiscale Mission, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Magnetospheric_Multiscale_Mission",
+      },
+    ],
+  } as Spacecraft,
+  113: {
+    id: "113",
+    shortName: "MMS4",
+    longName: "Magnetospheric Multiscale Mission 4",
+    sources: [
+      {
+        title: "Magnetospheric Multiscale Mission, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Magnetospheric_Multiscale_Mission",
+      },
+    ],
+  } as Spacecraft,
+  192: {
+    id: "192",
+    shortName: "THB",
+    longName: "THEMIS B",
+    sources: [
+      {
+        title: "THEMIS, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/THEMIS",
       },
     ],
   } as Spacecraft,
