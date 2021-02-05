@@ -293,6 +293,28 @@ export const spacecraftMap = {
       },
     ],
   } as Spacecraft,
+  189: {
+    id: "189",
+    shortName: "NYST",
+    longName: "InSight",
+    sources: [
+      {
+        title: "InSight, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/InSight",
+      },
+    ],
+  } as Spacecraft,
+  41: {
+    id: "41",
+    shortName: "MEX",
+    longName: "Mars Express",
+    sources: [
+      {
+        title: "Mars Express, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Mars_Express",
+      },
+    ],
+  } as Spacecraft,
 };
 
 export const defaultDishList: Dish[] = [

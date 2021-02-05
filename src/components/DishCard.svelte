@@ -72,7 +72,7 @@
   <div class="dish-card-footer">
     <span class="subtitle">Updated: {dish["@updated"]}</span>
     <span class="abs">
-      <OverflowMenu>
+      <OverflowMenu flipped>
         <OverflowMenuItem>Models</OverflowMenuItem>
         <OverflowMenuItem on:click={() => (showReferencesModal = true)}>
           References
