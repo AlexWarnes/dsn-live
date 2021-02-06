@@ -58,6 +58,7 @@
     justify-content: center;
     align-items: center;
     padding: 0 2em;
+    flex-grow: 1;
   }
 
   li {

@@ -56,6 +56,7 @@
             <TooltipDefinition
               tooltipText={getSpacecraftDetails(target)["longName"] ||
                 "UNKNOWN"}
+              align="start"
             >
               <Tag>{target["@name"]}</Tag>
             </TooltipDefinition>
@@ -76,7 +77,7 @@
         <!-- TODO: Models -->
         <!-- <OverflowMenuItem>Models</OverflowMenuItem> -->
         <OverflowMenuItem on:click={() => (showReferencesModal = true)}>
-          References
+          Learn More
         </OverflowMenuItem>
       </OverflowMenu>
     </span>
