@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Button, Icon, Link } from "carbon-components-svelte";
   import Launch16 from "carbon-icons-svelte/lib/Launch16";
-  import LogoGitHub32 from "carbon-icons-svelte/lib/LogoGitHub32";
+  import LogoGithub32 from "carbon-icons-svelte/lib/LogoGithub32";
 </script>
 
 <header>
@@ -46,7 +46,7 @@
     tooltipAlignment="center"
     iconDescription="GitHub"
     disabled={false}
-    icon={LogoGitHub32}
+    icon={LogoGithub32}
   />
 </span>
 

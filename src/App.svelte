@@ -91,10 +91,4 @@
   .nav-menu-wrapper :global(svg) {
     margin: 0 10px 0 0;
   }
-
-  .credit {
-    padding: 5px 20px;
-    font-weight: 600;
-    text-align: right;
-  }
 </style>
