@@ -315,6 +315,28 @@ export const spacecraftMap = {
       },
     ],
   } as Spacecraft,
+  92: {
+    id: "92",
+    shortName: "ACE",
+    longName: "Advanced Composition Explorer",
+    sources: [
+      {
+        title: "Advanced Composition Explorer, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Advanced_Composition_Explorer",
+      },
+    ],
+  } as Spacecraft,
+  98: {
+    id: "98",
+    shortName: "NHPC",
+    longName: "New Horizons",
+    sources: [
+      {
+        title: "New Horizons, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/New_Horizons",
+      },
+    ],
+  } as Spacecraft,
 };
 
 export const defaultDishList: Dish[] = [

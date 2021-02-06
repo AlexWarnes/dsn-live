@@ -27,7 +27,7 @@
 
 <svelte:window bind:innerWidth={vw} />
 {#if vw > 875}
-  <Header platformName="Deep Space Network">
+  <Header platformName="Deep Space Network" href="/#/">
     <div class="flex-spacer" />
     <span class="nav-btn-wrapper">
       <Button href="/#/dashboard" kind="ghost" icon={SatelliteRadar24}
@@ -65,13 +65,13 @@
   </Header>
 {/if}
 <main>
-  <h1>DSN Live</h1>
-  <p class="credit">All data courtesy of NASA/JPL</p>
-  <!-- <Dashboard /> -->
   <Router {routes} />
 </main>
 
 <style>
+  main {
+    padding: 60px 0 0;
+  }
   .flex-spacer {
     flex-grow: 1;
   }

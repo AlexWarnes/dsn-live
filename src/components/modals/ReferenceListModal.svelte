@@ -34,8 +34,8 @@
     margin: 10px 5px;
   }
 
-  .ref-row :global(a) {
+  /* .ref-row :global(a) {
     display: flex;
     align-items: center;
-  }
+  } */
 </style>

@@ -55,7 +55,6 @@ export async function processDSNResponse(response: any): Promise<DSNData> {
 function parseDSNData(data): DSNResponse {
   const xmlDoc = parser.parseFromString(data, "text/xml");
   const { dsn } = JSON.parse(xml2json(xmlDoc, ""));
-  console.log("DSN Response JSON:", dsn);
   return dsn;
 }
 
@@ -97,13 +96,19 @@ function generateDSNDataForUI(
 
 function serializeResponseDish(dish: Partial<Dish>): any {
   const { downSignal, upSignal, target } = dish;
+  // TODO: find better categorization than online/offline
   const status = dish["@elevationAngle"] ? "ONLINE" : "OFFLINE";
   // TODO: convert all number strings into Number types?
   return {
     ...dish,
-    downSignal: Array.isArray(downSignal) ? downSignal : [downSignal],
-    upSignal: Array.isArray(upSignal) ? upSignal : [upSignal],
-    target: Array.isArray(target) ? target : [target],
+    // ensure all values are arrays and remove any falsey values (some data come back undefined)
+    downSignal: (Array.isArray(downSignal) ? downSignal : [downSignal]).filter(
+      (x) => !!x
+    ),
+    upSignal: (Array.isArray(upSignal) ? upSignal : [upSignal]).filter(
+      (x) => !!x
+    ),
+    target: (Array.isArray(target) ? target : [target]).filter((x) => !!x),
     metadata: {
       status,
       station: getStationByDishName(dish["@name"]),

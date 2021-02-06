@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { Loading } from "carbon-components-svelte";
+
   import Summary from "../Summary.svelte";
   import DishCard from "../DishCard.svelte";
   import { processDSNResponse } from "../../util/utils";
@@ -35,7 +37,7 @@
 </script>
 
 {#await DSNData}
-  <p>...loading</p>
+  <Loading />
 {:then data}
   <Summary DSNData={data} {latestRequest} {nextRequest} />
   <div class="dish-grid">

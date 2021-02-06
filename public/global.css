@@ -49,6 +49,11 @@ body * {
 .abs {
   position: absolute;
 }
+
+a {
+  display: inline-flex;
+  align-items: center;
+}
 /* 
 a {
   color: rgb(0, 100, 200);
