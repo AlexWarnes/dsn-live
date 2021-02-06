@@ -46,19 +46,18 @@
         <HeaderPanelLinks>
           <span class="nav-menu-wrapper">
             <HeaderPanelLink href="/#/">
-              <!-- <Icon render={EarthEuropeAfrica24} /> -->
+              <Icon render={EarthEuropeAfrica24} />
               HOME</HeaderPanelLink
             >
             <HeaderPanelLink href="/#/dashboard">
-              <!-- <Icon render={SatelliteRadar24} /> -->
+              <Icon render={SatelliteRadar24} />
               DASHBOARD</HeaderPanelLink
             >
             <HeaderPanelLink href="/#/about">
-              <!-- <Icon render={Notebook24} /> -->
+              <Icon render={Notebook24} />
               ABOUT</HeaderPanelLink
             >
-            <span class="nav-menu-wrapper" /></span
-          ></HeaderPanelLinks
+          </span></HeaderPanelLinks
         >
       </HeaderAction>
     </HeaderUtilities>
@@ -71,6 +70,10 @@
 <style>
   main {
     padding: 60px 0 0;
+    min-height: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
   }
   .flex-spacer {
     flex-grow: 1;

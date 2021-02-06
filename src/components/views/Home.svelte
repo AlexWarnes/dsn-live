@@ -72,9 +72,6 @@
     font-weight: 600;
   }
   .github-btn-wrapper {
-    position: absolute;
-    bottom: 10px;
-    left: calc(50% - 56px);
-    cursor: pointer;
+    margin: auto auto 0;
   }
 </style>

@@ -52,10 +52,10 @@
       {#if dish["target"].length > 0}
         {#each dish["target"] as target (target["@id"])}
           <div class="target-col">
+            <!-- TODO: Fix hidden tooltip overflow -->
             <TooltipDefinition
               tooltipText={getSpacecraftDetails(target)["longName"] ||
                 "UNKNOWN"}
-              align="start"
             >
               <Tag>{target["@name"]}</Tag>
             </TooltipDefinition>
@@ -73,7 +73,8 @@
     <span class="subtitle">Updated: {dish["@updated"]}</span>
     <span class="abs">
       <OverflowMenu flipped>
-        <OverflowMenuItem>Models</OverflowMenuItem>
+        <!-- TODO: Models -->
+        <!-- <OverflowMenuItem>Models</OverflowMenuItem> -->
         <OverflowMenuItem on:click={() => (showReferencesModal = true)}>
           References
         </OverflowMenuItem>
@@ -114,7 +115,6 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    overflow-x: hidden;
   }
 
   .dish-card-footer {
@@ -160,8 +160,10 @@
   .target-col {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     margin: 5px 10px;
+    position: relative;
+    overflow: unset;
   }
 
   .abs {
