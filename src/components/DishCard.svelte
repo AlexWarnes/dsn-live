@@ -7,18 +7,16 @@
   import { fade } from "svelte/transition";
 
   import {
-    Tag,
-    TooltipDefinition,
     OverflowMenu,
     OverflowMenuItem,
     ContentSwitcher,
     Switch,
-    Tabs,
-    Tab,
-    TabContent,
+    Button,
   } from "carbon-components-svelte";
   import ArrowDown16 from "carbon-icons-svelte/lib/ArrowDown16";
   import ArrowUp16 from "carbon-icons-svelte/lib/ArrowUp16";
+  import Maximize16 from "carbon-icons-svelte/lib/Maximize16";
+
   import Satellite16 from "carbon-icons-svelte/lib/Satellite16";
   import TargetDetails from "./TargetDetails.svelte";
   import SignalDetails from "./SignalDetails.svelte";
@@ -52,63 +50,73 @@
   }
 </script>
 
-<article
-  class="dish-card-container {dish['metadata']['status']}"
-  in:fade={{ duration: 300 }}
->
-  <div class="dish-card-header">
-    <h2>{dish["@name"]}</h2>
-    <span>{dish["metadata"]["station"].toUpperCase()}</span>
-  </div>
+<span class="rel">
+  <article
+    class="dish-card-container {dish['metadata']['status']}"
+    in:fade={{ duration: 300 }}
+  >
+    <div class="dish-card-header">
+      <h2>{dish["@name"]}</h2>
+      <span>{dish["metadata"]["station"].toUpperCase()}</span>
+    </div>
 
-  <ContentSwitcher bind:selectedIndex size="sm">
-    <Switch>
-      <div style="display: flex; align-items: center;">
-        <Satellite16 style="margin-right: 0.5rem;" />
-        Targets
-      </div>
-    </Switch>
-    <Switch>
-      <div style="display: flex; align-items: center;">
-        <ArrowUp16 style="margin-right: 0.5rem;" />
-        Signal
-      </div>
-    </Switch>
-    <Switch>
-      <div style="display: flex; align-items: center;">
-        <ArrowDown16 style="margin-right: 0.5rem;" />
-        Signal
-      </div>
-    </Switch>
-  </ContentSwitcher>
-  <div class="dish-card-content">
-    {#if selectedIndex === 0}
-      <TargetDetails targets={dish["target"]} />
-    {:else if selectedIndex === 1}
-      <SignalDetails signals={dish["upSignal"]} direction="Up" />
-    {:else}
-      <SignalDetails signals={dish["downSignal"]} direction="Down" />
-    {/if}
-  </div>
+    <ContentSwitcher bind:selectedIndex size="sm">
+      <Switch>
+        <div style="display: flex; align-items: center;">
+          <Satellite16 style="margin-right: 0.5rem;" />
+          Targets
+        </div>
+      </Switch>
+      <Switch>
+        <div style="display: flex; align-items: center;">
+          <ArrowUp16 style="margin-right: 0.5rem;" />
+          Signal
+        </div>
+      </Switch>
+      <Switch>
+        <div style="display: flex; align-items: center;">
+          <ArrowDown16 style="margin-right: 0.5rem;" />
+          Signal
+        </div>
+      </Switch>
+    </ContentSwitcher>
+    <div class="dish-card-content">
+      {#if selectedIndex === 0}
+        <TargetDetails targets={dish["target"]} />
+      {:else if selectedIndex === 1}
+        <SignalDetails signals={dish["upSignal"]} direction="Up" />
+      {:else}
+        <SignalDetails signals={dish["downSignal"]} direction="Down" />
+      {/if}
+    </div>
 
-  <div class="viz-row">
-    <ElevationViz elevationAngle={dish["@elevationAngle"]} />
-    <AzimuthViz azimuthAngle={dish["@azimuthAngle"]} />
-  </div>
-  <!-- </div> -->
-  <div class="dish-card-footer">
-    <span class="subtitle">Updated: {dish["@updated"]}</span>
-    <span class="abs">
-      <OverflowMenu flipped>
-        <!-- TODO: Models -->
-        <!-- <OverflowMenuItem>Models</OverflowMenuItem> -->
-        <OverflowMenuItem on:click={() => (showReferencesModal = true)}>
-          Learn More
-        </OverflowMenuItem>
-      </OverflowMenu>
-    </span>
-  </div>
-</article>
+    <div class="viz-row">
+      <ElevationViz elevationAngle={dish["@elevationAngle"]} />
+      <AzimuthViz azimuthAngle={dish["@azimuthAngle"]} />
+    </div>
+    <!-- </div> -->
+    <div class="dish-card-footer">
+      <span class="subtitle">Updated: {dish["@updated"]}</span>
+    </div>
+  </article>
+  <span class="abs">
+    <!-- <Button
+      kind="ghost"
+      tooltipPosition="left"
+      tooltipAlignment="center"
+      iconDescription="Maximize"
+      icon={Maximize16}
+    /> -->
+    <OverflowMenu flipped>
+      <!-- TODO: Models -->
+      <!-- <OverflowMenuItem>Models</OverflowMenuItem> -->
+      <!-- <OverflowMenuItem>Maximize</OverflowMenuItem> -->
+      <OverflowMenuItem on:click={() => (showReferencesModal = true)}>
+        Learn More
+      </OverflowMenuItem>
+    </OverflowMenu>
+  </span>
+</span>
 <ReferenceListModal
   open={showReferencesModal}
   references={targetReferences}
@@ -127,6 +135,7 @@
     padding: 20px 0 0 0;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
 
   .dish-card-header {
@@ -138,7 +147,7 @@
 
   .dish-card-content {
     flex-grow: 1;
-    padding: 10px 30px;
+    padding: 10px 0;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -175,8 +184,9 @@
   }
 
   .abs {
-    right: 0;
-    bottom: 0;
+    /* Allows the menu to appear despite the card's overflow hidden */
+    right: 8px;
+    bottom: 8px;
   }
 
   /* CUSTOMIZE CARBON TABS */
@@ -190,7 +200,7 @@
   .dish-card-container :global(.bx--content-switcher--selected) {
     background-color: #35394888 !important;
     color: var(--white-1) !important;
-    border-bottom: 1px solid #1461fe;
+    border-bottom: 1px solid var(--blue-1);
   }
 
   .dish-card-container

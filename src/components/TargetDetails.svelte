@@ -1,6 +1,10 @@
 <script lang="ts">
-  import { getHumanReadableRange, getSpacecraftDetails } from "../util/utils";
-  import { Tag, TooltipDefinition } from "carbon-components-svelte";
+  import {
+    getHumanReadableLightTime,
+    getHumanReadableRange,
+    getSpacecraftDetails,
+  } from "../util/utils";
+  import { Tag, TooltipDefinition, DataTable } from "carbon-components-svelte";
   import type { TargetEntry } from "../data/Models";
   import { fly } from "svelte/transition";
 
@@ -18,10 +22,35 @@
           <Tag>{target["@name"]}</Tag>
         </TooltipDefinition>
         <span class="target-detail"
+          >{getHumanReadableLightTime(target["@rtlt"])
+            ? getHumanReadableLightTime(target["@rtlt"]) + " @"
+            : ""}</span
+        >
+        <span class="target-detail"
           >{getHumanReadableRange(target["@downlegRange"])}</span
         >
       </div>
     {/each}
+    <!-- <DataTable
+      size="compact"
+      headers={[
+        { key: "longName", value: "Name" },
+        { key: "@name", value: "Abbr" },
+        { key: "@downlegRange", value: "Range" },
+        { key: "@rtld", value: "Light Hours" },
+      ]}
+      rows={targets.map((t) => {
+        return {
+          ...t,
+          id: t["@id"],
+          longName: getSpacecraftDetails(t).longName,
+          "@rtld": getHumanReadableLightTime(t["@rtlt"]),
+          "@downlegRange": getHumanReadableRange(t["@downlegRange"]),
+        };
+      })}
+    /> -->
+  {:else}
+    <p>No Targets</p>
   {/if}
 </div>
 
@@ -32,6 +61,7 @@
     flex-wrap: wrap;
     flex-grow: 1;
     flex-direction: column;
+    padding: 0 30px;
   }
   .target-row {
     width: 100%;
@@ -43,6 +73,6 @@
   }
 
   .target-detail {
-    margin: 0 5px;
+    margin: 0 0 0 5px;
   }
 </style>

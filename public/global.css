@@ -50,6 +50,10 @@ body * {
   position: absolute;
 }
 
+.rel {
+  position: relative;
+}
+
 a {
   display: inline-flex;
   align-items: center;

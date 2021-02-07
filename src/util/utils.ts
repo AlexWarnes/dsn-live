@@ -1,10 +1,12 @@
 import xml2json from "../util/xml2json";
 import type {
   Dish,
+  DownSignalEntry,
   DSNData,
   DSNResponse,
   Spacecraft,
   TargetEntry,
+  UpSignalEntry,
 } from "../data/Models";
 import {
   defaultDishList,
@@ -102,12 +104,12 @@ function serializeResponseDish(dish: Partial<Dish>): any {
   return {
     ...dish,
     // ensure all values are arrays and remove any falsey values (some data come back undefined)
-    downSignal: (Array.isArray(downSignal) ? downSignal : [downSignal]).filter(
-      (x) => !!x
-    ),
-    upSignal: (Array.isArray(upSignal) ? upSignal : [upSignal]).filter(
-      (x) => !!x
-    ),
+    downSignal: (Array.isArray(downSignal) ? downSignal : [downSignal])
+      .filter((x) => !!x)
+      .map((s) => formatSignalValues(s)),
+    upSignal: (Array.isArray(upSignal) ? upSignal : [upSignal])
+      .filter((x) => !!x)
+      .map((s) => formatSignalValues(s)),
     target: (Array.isArray(target) ? target : [target]).filter((x) => !!x),
     metadata: {
       status,
@@ -119,7 +121,7 @@ function serializeResponseDish(dish: Partial<Dish>): any {
 export const getHumanReadableRange = (range: string): string => {
   // If there is no range provided, or invalid range
   if (!range || range.trim().length === 0 || Number(range) <= 0) {
-    return "N/A";
+    return "";
   }
   const rangeNum = Number(range);
   if (rangeNum > 999_999_999) {
@@ -136,5 +138,66 @@ export const getHumanReadableRange = (range: string): string => {
     return `${xThousand.toFixed(2)}K km`;
   } else {
     return `${rangeNum.toFixed(2)} km`;
+  }
+};
+
+export const formatSignalValues = (
+  signalEntry: DownSignalEntry | UpSignalEntry
+): DownSignalEntry | UpSignalEntry => {
+  let updatedEntry: DownSignalEntry | UpSignalEntry = {
+    ...signalEntry,
+    "@dataRate": formatDataRate(signalEntry["@dataRate"]),
+    "@power": formatPower(signalEntry["@power"]),
+    "@frequency": formatFrequency(signalEntry["@frequency"]),
+  };
+
+  return updatedEntry;
+};
+
+export const formatPower = (value: string): string => {
+  if (!signalDataIsValid(value)) {
+    return "N/A";
+  } else {
+    return `${(+value).toFixed(2)}dBm`;
+    // If kw is needed this should work
+    // return `${(parseInt(value, 10) * 100).toFixed(2)}kw`;
+  }
+};
+export const formatFrequency = (value: string): string => {
+  if (!signalDataIsValid(value)) {
+    return "N/A";
+  } else {
+    return `${(parseFloat(value) / 1000000000).toFixed(2)}GHz`;
+  }
+};
+export const formatDataRate = (value: string): string => {
+  if (!signalDataIsValid(value)) {
+    return "N/A";
+  } else {
+    return `${(parseFloat(value) / 1000).toFixed(2)}kb/s`;
+  }
+};
+
+export const getHumanReadableLightTime = (rtlt: string): string => {
+  if (!signalDataIsValid(rtlt) || +rtlt === -1) {
+    return "";
+  } else if (parseFloat(rtlt) > 3600) {
+    return `${(parseFloat(rtlt) / 60 / 60).toFixed(2)} Light Hours`;
+  } else if (parseFloat(rtlt) > 60) {
+    return `${(parseFloat(rtlt) / 60).toFixed(2)} Light Minutes`;
+  } else {
+    return `${parseFloat(rtlt).toFixed(2)} Light Seconds`;
+  }
+};
+
+const signalDataIsValid = (value: string): boolean => {
+  if (
+    value == undefined ||
+    isNaN(+value) ||
+    (typeof value === "string" && value.trim().length === 0)
+  ) {
+    return false;
+  } else {
+    return true;
   }
 };
