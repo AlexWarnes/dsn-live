@@ -18,8 +18,8 @@
 
 <style>
   .azimuth-viz-box {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
     position: relative;
     overflow: hidden;
   }
@@ -46,9 +46,10 @@
   .azimuth-line {
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
-    background-color: lightseagreen;
+    background-color: #20b2aa;
+    box-shadow: 0px 0 2px #20b2aa;
     height: 50%;
-    width: 2px;
+    width: 1px;
     left: 50%;
     bottom: 50%;
     z-index: 4;
@@ -58,7 +59,7 @@
   .north-icon {
     position: absolute;
     left: 52%;
-    top: -5px;
+    top: -2px;
   }
 
   .caption,

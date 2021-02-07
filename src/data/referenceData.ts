@@ -337,6 +337,17 @@ export const spacecraftMap = {
       },
     ],
   } as Spacecraft,
+  8: {
+    id: "8",
+    shortName: "WIND",
+    longName: "WIND",
+    sources: [
+      {
+        title: "WIND, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Wind_(spacecraft)",
+      },
+    ],
+  } as Spacecraft,
 };
 
 export const defaultDishList: Dish[] = [

@@ -4,12 +4,24 @@
   import AzimuthViz from "./AzimuthViz.svelte";
   import ElevationViz from "./ElevationViz.svelte";
   import ReferenceListModal from "./modals/ReferenceListModal.svelte";
+  import { fade } from "svelte/transition";
+
   import {
     Tag,
     TooltipDefinition,
     OverflowMenu,
     OverflowMenuItem,
+    ContentSwitcher,
+    Switch,
+    Tabs,
+    Tab,
+    TabContent,
   } from "carbon-components-svelte";
+  import ArrowDown16 from "carbon-icons-svelte/lib/ArrowDown16";
+  import ArrowUp16 from "carbon-icons-svelte/lib/ArrowUp16";
+  import Satellite16 from "carbon-icons-svelte/lib/Satellite16";
+  import TargetDetails from "./TargetDetails.svelte";
+  import SignalDetails from "./SignalDetails.svelte";
 
   // Inputs
   export let dish: Dish = null;
@@ -17,6 +29,7 @@
   // Component State
   let showReferencesModal: boolean = false;
   const closeReferencesModal = () => (showReferencesModal = false);
+  let selectedIndex = 0;
 
   // List of targetEntry references for this card
   let targetReferences: Source[] = [];
@@ -39,37 +52,50 @@
   }
 </script>
 
-<article class="dish-card-container {dish['metadata']['status']}">
+<article
+  class="dish-card-container {dish['metadata']['status']}"
+  in:fade={{ duration: 300 }}
+>
   <div class="dish-card-header">
     <h2>{dish["@name"]}</h2>
     <span>{dish["metadata"]["station"].toUpperCase()}</span>
   </div>
+
+  <ContentSwitcher bind:selectedIndex size="sm">
+    <Switch>
+      <div style="display: flex; align-items: center;">
+        <Satellite16 style="margin-right: 0.5rem;" />
+        Targets
+      </div>
+    </Switch>
+    <Switch>
+      <div style="display: flex; align-items: center;">
+        <ArrowUp16 style="margin-right: 0.5rem;" />
+        Signal
+      </div>
+    </Switch>
+    <Switch>
+      <div style="display: flex; align-items: center;">
+        <ArrowDown16 style="margin-right: 0.5rem;" />
+        Signal
+      </div>
+    </Switch>
+  </ContentSwitcher>
   <div class="dish-card-content">
-    <div class="row">
-      <h3>TARGETS</h3>
-    </div>
-    <div class="target-container">
-      {#if dish["target"].length > 0}
-        {#each dish["target"] as target (target["@id"])}
-          <div class="target-col">
-            <!-- TODO: Fix hidden tooltip overflow -->
-            <TooltipDefinition
-              tooltipText={getSpacecraftDetails(target)["longName"] ||
-                "UNKNOWN"}
-              align="start"
-            >
-              <Tag>{target["@name"]}</Tag>
-            </TooltipDefinition>
-            <p>{getHumanReadableRange(target["@downlegRange"])}</p>
-          </div>
-        {/each}
-      {/if}
-    </div>
-    <div class="viz-row">
-      <ElevationViz elevationAngle={dish["@elevationAngle"]} />
-      <AzimuthViz azimuthAngle={dish["@azimuthAngle"]} />
-    </div>
+    {#if selectedIndex === 0}
+      <TargetDetails targets={dish["target"]} />
+    {:else if selectedIndex === 1}
+      <SignalDetails signals={dish["upSignal"]} direction="Up" />
+    {:else}
+      <SignalDetails signals={dish["downSignal"]} direction="Down" />
+    {/if}
   </div>
+
+  <div class="viz-row">
+    <ElevationViz elevationAngle={dish["@elevationAngle"]} />
+    <AzimuthViz azimuthAngle={dish["@azimuthAngle"]} />
+  </div>
+  <!-- </div> -->
   <div class="dish-card-footer">
     <span class="subtitle">Updated: {dish["@updated"]}</span>
     <span class="abs">
@@ -107,7 +133,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 30px;
+    padding: 0 30px 15px;
   }
 
   .dish-card-content {
@@ -136,12 +162,6 @@
     opacity: 0.5;
   }
 
-  h3 {
-    font-size: 1em;
-    font-weight: 600;
-    margin: 0 0 5px 0;
-  }
-
   .subtitle {
     opacity: 0.75;
     font-size: 0.75em;
@@ -151,24 +171,41 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-  }
-
-  .target-container {
-    display: flex;
-    flex-wrap: wrap;
-    flex-grow: 1;
-  }
-  .target-col {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 5px 10px;
-    position: relative;
-    overflow: unset;
+    padding: 5px 30px;
   }
 
   .abs {
     right: 0;
     bottom: 0;
+  }
+
+  /* CUSTOMIZE CARBON TABS */
+
+  .dish-card-container :global(.bx--content-switcher-btn) {
+    background: #35394888;
+    border-bottom: 1px solid transparent;
+    font-weight: 600;
+    transition: border-bottom 0.5s ease;
+  }
+  .dish-card-container :global(.bx--content-switcher--selected) {
+    background-color: #35394888 !important;
+    color: var(--white-1) !important;
+    border-bottom: 1px solid #1461fe;
+  }
+
+  .dish-card-container
+    :global(.bx--content-switcher-btn:first-child, .bx--content-switcher-btn:last-child) {
+    border-radius: 0;
+  }
+
+  .dish-card-container
+    :global(.bx--content-switcher--selected
+      + .bx--content-switcher-btn::before) {
+    background-color: #393939;
+  }
+
+  .dish-card-container :global(.bx--content-switcher) {
+    width: 95%;
+    margin: 0 auto;
   }
 </style>

@@ -16,8 +16,8 @@
 
 <style>
   .elevation-viz-box {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
     position: relative;
     overflow: hidden;
   }
@@ -36,9 +36,10 @@
   .elevation-line {
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
-    height: 2px;
+    height: 1px;
     left: 1px;
-    background-color: lightseagreen;
+    background-color: #20b2aa;
+    box-shadow: 0px 0 2px #20b2aa;
     z-index: 4;
   }
 
