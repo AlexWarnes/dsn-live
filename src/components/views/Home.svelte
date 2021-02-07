@@ -19,13 +19,11 @@
           <span class="bold">Monitor</span> signals sent between NASA's Deep Space
           Network and spacecraft in real time.
         </p>
-        <!-- <Button href="/#/dashboard" size="small">DASHBOARD</Button> -->
       </li>
       <li>
         <p>
           <span class="bold">Learn</span> more from references in each section.
         </p>
-        <!-- <Button href="/#/about" size="small">ABOUT</Button> -->
       </li>
       <li>
         <p>
