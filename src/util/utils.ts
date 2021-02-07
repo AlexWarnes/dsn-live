@@ -84,16 +84,16 @@ function generateDSNDataForUI(
     }
   });
 
-  const compareFn = (a, b) => {
-    if (a["metadata"]["status"] < b["metadata"]["status"]) {
-      return 1;
-    } else {
-      return -1;
-    }
-  };
-  const sortedDishes = updatedDishes.sort(compareFn);
+  // const compareFn = (a, b) => {
+  //   if (a["metadata"]["status"] < b["metadata"]["status"]) {
+  //     return 1;
+  //   } else {
+  //     return -1;
+  //   }
+  // };
+  // const sortedDishes = updatedDishes.sort(compareFn);
 
-  return { ...serializedDSNData, dishes: sortedDishes };
+  return { ...serializedDSNData, dishes: updatedDishes };
 }
 
 function serializeResponseDish(dish: Partial<Dish>): any {

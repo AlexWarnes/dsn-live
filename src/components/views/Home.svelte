@@ -2,6 +2,7 @@
   import { Button, Icon, Link } from "carbon-components-svelte";
   import Launch16 from "carbon-icons-svelte/lib/Launch16";
   import LogoGithub32 from "carbon-icons-svelte/lib/LogoGithub32";
+  import SatelliteRadar24 from "carbon-icons-svelte/lib/SatelliteRadar24";
 </script>
 
 <header>
@@ -9,18 +10,22 @@
     <h1>Deep Space Network</h1>
     <ul>
       <li>
+        <Button href="/#/dashboard" size="default" icon={SatelliteRadar24}
+          >LIVE DASHBOARD</Button
+        >
+      </li>
+      <li>
         <p>
           <span class="bold">Monitor</span> signals sent between NASA's Deep Space
           Network and spacecraft in real time.
         </p>
-        <Button href="/#/dashboard" size="small">DASHBOARD</Button>
+        <!-- <Button href="/#/dashboard" size="small">DASHBOARD</Button> -->
       </li>
       <li>
         <p>
-          <span class="bold">Learn</span> more from external references provided
-          in each section.
+          <span class="bold">Learn</span> more from references in each section.
         </p>
-        <Button href="/#/about" size="small">ABOUT</Button>
+        <!-- <Button href="/#/about" size="small">ABOUT</Button> -->
       </li>
       <li>
         <p>
