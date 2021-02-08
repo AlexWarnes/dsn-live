@@ -54,6 +54,7 @@
     bottom: 50%;
     z-index: 4;
     transform-origin: bottom;
+    transition: transform 0.2s ease-in-out;
   }
 
   .north-icon {

@@ -41,6 +41,7 @@
     background-color: #20b2aa;
     box-shadow: 0px 0 2px #20b2aa;
     z-index: 4;
+    transition: transform 0.2s ease-in-out;
   }
 
   .caption {
