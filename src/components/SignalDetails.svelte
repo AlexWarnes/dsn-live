@@ -7,7 +7,7 @@
 
   // Inputs
   export let signals: UpSignalEntry[] | DownSignalEntry[] = [];
-  export let direction: "Up" | "Down" = undefined;
+  // export let direction: "Up" | "Down" = undefined;
 </script>
 
 <div class="signals-container" in:fly={{ x: -20, duration: 400 }}>
@@ -27,7 +27,7 @@
       })}
     />
   {:else}
-    <p>No signals</p>
+    <p class="empty">No signals</p>
   {/if}
 </div>
 
@@ -42,5 +42,9 @@
 
   .signals-container :global(.bx--data-table-container) {
     width: 100%;
+  }
+
+  .empty {
+    margin: 0 0 0 30px;
   }
 </style>

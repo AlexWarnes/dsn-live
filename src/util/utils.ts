@@ -201,3 +201,37 @@ const signalDataIsValid = (value: string): boolean => {
     return true;
   }
 };
+
+export const determineTargetStatus = (
+  dish: Dish
+): "NONE" | "IDLE" | "ACTIVE" => {
+  if (!dish) {
+    return "NONE";
+  }
+
+  if (dish["target"] && dish["target"].length > 0) {
+    return "ACTIVE";
+  }
+  return "NONE";
+};
+export const determineSignalStatus = (
+  dish: Dish,
+  directionKey: "upSignal" | "downSignal"
+): "NONE" | "IDLE" | "ACTIVE" => {
+  if (!dish) {
+    return "NONE";
+  }
+
+  if (dish[directionKey] && dish[directionKey].length > 0) {
+    if (
+      dish[directionKey].every(
+        (signal) => signal["@signalType"] === "none" || !signal["@signalType"]
+      )
+    ) {
+      return "IDLE";
+    } else {
+      return "ACTIVE";
+    }
+  }
+  return "NONE";
+};

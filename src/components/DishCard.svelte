@@ -1,6 +1,10 @@
 <script lang="ts">
   import type { Dish, Source } from "../data/Models";
-  import { getHumanReadableRange, getSpacecraftDetails } from "../util/utils";
+  import {
+    determineSignalStatus,
+    determineTargetStatus,
+    getSpacecraftDetails,
+  } from "../util/utils";
   import AzimuthViz from "./AzimuthViz.svelte";
   import ElevationViz from "./ElevationViz.svelte";
   import ReferenceListModal from "./modals/ReferenceListModal.svelte";
@@ -11,12 +15,10 @@
     OverflowMenuItem,
     ContentSwitcher,
     Switch,
-    Button,
   } from "carbon-components-svelte";
   import ArrowDown16 from "carbon-icons-svelte/lib/ArrowDown16";
   import ArrowUp16 from "carbon-icons-svelte/lib/ArrowUp16";
-  import Maximize16 from "carbon-icons-svelte/lib/Maximize16";
-
+  // import Maximize16 from "carbon-icons-svelte/lib/Maximize16";
   import Satellite16 from "carbon-icons-svelte/lib/Satellite16";
   import TargetDetails from "./TargetDetails.svelte";
   import SignalDetails from "./SignalDetails.svelte";
@@ -29,9 +31,13 @@
   const closeReferencesModal = () => (showReferencesModal = false);
   let selectedIndex = 0;
 
-  // List of targetEntry references for this card
-  let targetReferences: Source[] = [];
-  const updateTargetReferences = (dish) => {
+  // Whenever a dish appears, populate a list of references for it
+  $: targetReferences = updateTargetReferences(dish);
+  // List of targetEntry references from specified dish
+  const updateTargetReferences = (dish: Dish): Source[] => {
+    if (!dish) {
+      return [];
+    }
     let tempRefs = [];
     for (let target of dish["target"]) {
       const spacecraft = getSpacecraftDetails(target);
@@ -39,15 +45,13 @@
         tempRefs = [...tempRefs, source];
       }
     }
-    targetReferences = tempRefs;
+    return tempRefs;
   };
 
-  // Whenever a dish appears, populate a list of references for it
-  $: {
-    if (dish) {
-      updateTargetReferences(dish);
-    }
-  }
+  // Determine the status/style of each tab
+  $: targetStatus = determineTargetStatus(dish);
+  $: upSignalStatus = determineSignalStatus(dish, "upSignal");
+  $: downSignalStatus = determineSignalStatus(dish, "downSignal");
 </script>
 
 <span class="rel">
@@ -62,21 +66,43 @@
 
     <ContentSwitcher bind:selectedIndex size="sm">
       <Switch>
-        <div style="display: flex; align-items: center;">
+        <div
+          style="display: flex; align-items: center;"
+          class="tab-slot {targetStatus}"
+        >
           <Satellite16 style="margin-right: 0.5rem;" />
           Targets
+          <!-- <span
+            class="status-dot {dish['target'] && dish['target'].length > 0
+              ? 'active'
+              : null}"
+          /> -->
         </div>
       </Switch>
       <Switch>
-        <div style="display: flex; align-items: center;">
+        <div
+          style="display: flex; align-items: center;"
+          class="tab-slot {upSignalStatus}"
+        >
           <ArrowUp16 style="margin-right: 0.5rem;" />
           Signal
+          <!-- TODO: also limit active based on signal types -->
+          <!-- <span
+            class="status-dot {dish['upSignal'].length > 0 ? 'active' : null}"
+          /> -->
         </div>
       </Switch>
       <Switch>
-        <div style="display: flex; align-items: center;">
+        <div
+          style="display: flex; align-items: center;"
+          class="tab-slot {downSignalStatus}"
+        >
           <ArrowDown16 style="margin-right: 0.5rem;" />
           Signal
+          <!-- TODO: also limit active based on signal types -->
+          <!-- <span
+            class="status-dot {dish['downSignal'].length > 0 ? 'active' : null}"
+          /> -->
         </div>
       </Switch>
     </ContentSwitcher>
@@ -84,9 +110,9 @@
       {#if selectedIndex === 0}
         <TargetDetails targets={dish["target"]} />
       {:else if selectedIndex === 1}
-        <SignalDetails signals={dish["upSignal"]} direction="Up" />
+        <SignalDetails signals={dish["upSignal"]} />
       {:else}
-        <SignalDetails signals={dish["downSignal"]} direction="Down" />
+        <SignalDetails signals={dish["downSignal"]} />
       {/if}
     </div>
 
@@ -167,9 +193,9 @@
     align-items: center;
   }
 
-  .OFFLINE {
+  /* .OFFLINE {
     opacity: 0.5;
-  }
+  } */
 
   .subtitle {
     opacity: 0.75;
@@ -187,6 +213,33 @@
     /* Allows the menu to appear despite the card's overflow hidden */
     right: 8px;
     bottom: 8px;
+  }
+
+  /* .status-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    margin: auto 0.5rem;
+    background-color: var(--coral-1);
+  }
+
+  .status-dot.active {
+    background-color: lime;
+  } */
+
+  .dish-card-container :global(.tab-slot svg) {
+    transition: fill 0.2s ease;
+  }
+
+  .dish-card-container :global(.tab-slot.ACTIVE svg) {
+    fill: lime;
+  }
+  .dish-card-container :global(.tab-slot.NONE svg) {
+    fill: var(--coral-1);
+  }
+
+  .dish-card-container :global(.tab-slot.IDLE svg) {
+    fill: gold;
   }
 
   /* CUSTOMIZE CARBON TABS */
