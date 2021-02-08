@@ -9,7 +9,7 @@
   import { mockData } from "../../data/referenceData";
   const dsnURL: string = "https://eyes.nasa.gov/dsn/data/dsn.xml";
   let latestRequest: string = "";
-  let requestIntervalUnits = 300;
+  let requestIntervalUnits = 60;
   let nextRequest: number = 0;
 
   let DSNData: DSNData = null;
@@ -32,7 +32,6 @@
   });
 
   async function getDSNData(): Promise<DSNData> {
-    console.log("RUNNING getDSNData");
     latestRequest = new Date().toLocaleString();
     try {
       // Request DSN Data

@@ -293,6 +293,17 @@ export const spacecraftMap = {
       },
     ],
   } as Spacecraft,
+  193: {
+    id: "193",
+    shortName: "THC",
+    longName: "THEMIS C",
+    sources: [
+      {
+        title: "THEMIS, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/THEMIS",
+      },
+    ],
+  } as Spacecraft,
   189: {
     id: "189",
     shortName: "NYST",
@@ -352,22 +363,7 @@ export const spacecraftMap = {
 
 export const defaultDishList: Dish[] = [
   {
-    "@name": "DSS26",
-    "@azimuthAngle": null,
-    "@elevationAngle": null,
-    "@windSpeed": null,
-    "@isMSPA": null,
-    "@isArray": null,
-    "@isDDOR": null,
-    "@created": null,
-    "@updated": null,
-    target: [],
-    downSignal: [],
-    upSignal: [],
-    metadata: { status: "OFFLINE", station: "Goldstone" },
-  },
-  {
-    "@name": "DSS25",
+    "@name": "DSS14",
     "@azimuthAngle": null,
     "@elevationAngle": null,
     "@windSpeed": null,
@@ -396,8 +392,24 @@ export const defaultDishList: Dish[] = [
     upSignal: [],
     metadata: { status: "OFFLINE", station: "Goldstone" },
   },
+
   {
-    "@name": "DSS14",
+    "@name": "DSS25",
+    "@azimuthAngle": null,
+    "@elevationAngle": null,
+    "@windSpeed": null,
+    "@isMSPA": null,
+    "@isArray": null,
+    "@isDDOR": null,
+    "@created": null,
+    "@updated": null,
+    target: [],
+    downSignal: [],
+    upSignal: [],
+    metadata: { status: "OFFLINE", station: "Goldstone" },
+  },
+  {
+    "@name": "DSS26",
     "@azimuthAngle": null,
     "@elevationAngle": null,
     "@windSpeed": null,
@@ -517,7 +529,7 @@ export const defaultDishList: Dish[] = [
     metadata: { status: "OFFLINE", station: "Madrid" },
   },
   {
-    "@name": "DSS65",
+    "@name": "DSS63",
     "@azimuthAngle": null,
     "@elevationAngle": null,
     "@windSpeed": null,
@@ -532,7 +544,7 @@ export const defaultDishList: Dish[] = [
     metadata: { status: "OFFLINE", station: "Madrid" },
   },
   {
-    "@name": "DSS63",
+    "@name": "DSS65",
     "@azimuthAngle": null,
     "@elevationAngle": null,
     "@windSpeed": null,

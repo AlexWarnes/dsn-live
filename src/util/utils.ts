@@ -291,7 +291,6 @@ export const getUniqueTargetList = (
       }
     }
   }
-  console.log("getUniqueTargetList", fullList);
   return fullList;
 };
 

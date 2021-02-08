@@ -106,8 +106,11 @@
 
 <style>
   .summary-container {
-    background-color: var(--black-alpha);
+    margin: 0 auto;
     padding: 20px;
+    width: 100%;
+    max-width: 840px;
+    background-color: var(--black-alpha);
     border-radius: 3px;
     box-shadow: 3px 3px 5px #00000045;
   }
