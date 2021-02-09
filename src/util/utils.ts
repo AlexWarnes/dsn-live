@@ -4,6 +4,7 @@ import type {
   DownSignalEntry,
   DSNData,
   DSNResponse,
+  ResponseDish,
   Spacecraft,
   TargetEntry,
   UpSignalEntry,
@@ -66,21 +67,22 @@ function generateDSNDataForUI(
 ): DSNData {
   // updat the dish list by mapping over the default data, and grabbing from the DSN data if present
   const { dish: dishes, station: stations, timestamp } = jsonData;
-  let serializedDSNData: DSNData = {
+  // This will become type DSNData
+  let serializedDSNData: any = {
     dishes,
     stations,
     timestamp,
   };
 
   // Loop over default dishes, and update with data from response
-  const updatedDishes = defaultDishList.map((dish) => {
+  const updatedDishes = defaultData.map((dish) => {
     const dishInResponse = jsonData["dish"].find(
       (responseDish) => responseDish["@name"] === dish["@name"]
     );
     if (dishInResponse) {
       return serializeResponseDish(dishInResponse);
     } else {
-      return dish;
+      return { ...dish };
     }
   });
 
@@ -96,10 +98,13 @@ function generateDSNDataForUI(
   return { ...serializedDSNData, dishes: updatedDishes };
 }
 
-function serializeResponseDish(dish: Partial<Dish>): any {
+function serializeResponseDish(dish: ResponseDish): Dish {
   const { downSignal, upSignal, target } = dish;
+  const targets = (Array.isArray(target) ? target : [target]).filter(
+    (x) => !!x
+  );
   // TODO: find better categorization than online/offline
-  const status = dish["@elevationAngle"] ? "ONLINE" : "OFFLINE";
+  const status = targets.length > 0 ? "ONLINE" : "OFFLINE";
   // TODO: convert all number strings into Number types?
   return {
     ...dish,
@@ -110,7 +115,7 @@ function serializeResponseDish(dish: Partial<Dish>): any {
     upSignal: (Array.isArray(upSignal) ? upSignal : [upSignal])
       .filter((x) => !!x)
       .map((s) => formatSignalValues(s)),
-    target: (Array.isArray(target) ? target : [target]).filter((x) => !!x),
+    targets,
     metadata: {
       status,
       station: getStationByDishName(dish["@name"]),
@@ -209,7 +214,7 @@ export const determineTargetStatus = (
     return "NONE";
   }
 
-  if (dish["target"] && dish["target"].length > 0) {
+  if (dish["targets"] && dish["targets"].length > 0) {
     return "ACTIVE";
   }
   return "NONE";
@@ -280,7 +285,7 @@ export const getUniqueTargetList = (
   // For every dish
   for (let dish of data["dishes"]) {
     // For every target
-    for (let target of dish["target"]) {
+    for (let target of dish["targets"]) {
       // If it is not already in the fullList, add it
       if (!fullList.some((t) => t.id === target["@id"])) {
         fullList.push({
@@ -348,7 +353,7 @@ export const generateMockData = (): DSNData => {
             "@spacecraftId": "53",
           },
         ],
-        target: [
+        targets: [
           {
             "@name": "EMM",
             "@id": "62",
@@ -401,7 +406,7 @@ export const generateMockData = (): DSNData => {
             "@spacecraftId": "168",
           },
         ],
-        target: [
+        targets: [
           {
             "@name": "M20",
             "@id": "168",
@@ -447,7 +452,7 @@ export const generateMockData = (): DSNData => {
             "@spacecraftId": "53",
           },
         ],
-        target: [
+        targets: [
           {
             "@name": "M01O",
             "@id": "53",
@@ -511,7 +516,7 @@ export const generateMockData = (): DSNData => {
             "@spacecraftId": "74",
           },
         ],
-        target: [
+        targets: [
           {
             "@name": "MRO",
             "@id": "74",
@@ -571,7 +576,7 @@ export const generateMockData = (): DSNData => {
             "@spacecraftId": "168",
           },
         ],
-        target: [
+        targets: [
           {
             "@name": "M20",
             "@id": "168",
@@ -617,7 +622,7 @@ export const generateMockData = (): DSNData => {
             "@spacecraftId": "",
           },
         ],
-        target: [
+        targets: [
           {
             "@name": "EMM",
             "@id": "62",
@@ -663,7 +668,7 @@ export const generateMockData = (): DSNData => {
             "@spacecraftId": "92",
           },
         ],
-        target: [
+        targets: [
           {
             "@name": "ACE",
             "@id": "92",
@@ -687,7 +692,7 @@ export const generateMockData = (): DSNData => {
         "@isDDOR": null,
         "@created": null,
         "@updated": null,
-        target: [],
+        targets: [],
         downSignal: [],
         upSignal: [],
         metadata: {
@@ -705,7 +710,7 @@ export const generateMockData = (): DSNData => {
         "@isDDOR": null,
         "@created": null,
         "@updated": null,
-        target: [],
+        targets: [],
         downSignal: [],
         upSignal: [],
         metadata: {
@@ -723,7 +728,7 @@ export const generateMockData = (): DSNData => {
         "@isDDOR": null,
         "@created": null,
         "@updated": null,
-        target: [],
+        targets: [],
         downSignal: [],
         upSignal: [],
         metadata: {
@@ -741,7 +746,7 @@ export const generateMockData = (): DSNData => {
         "@isDDOR": null,
         "@created": null,
         "@updated": null,
-        target: [],
+        targets: [],
         downSignal: [],
         upSignal: [],
         metadata: {
@@ -759,7 +764,7 @@ export const generateMockData = (): DSNData => {
         "@isDDOR": null,
         "@created": null,
         "@updated": null,
-        target: [],
+        targets: [],
         downSignal: [],
         upSignal: [],
         metadata: {
@@ -799,7 +804,7 @@ export const generateMockData = (): DSNData => {
             "@spacecraftId": "",
           },
         ],
-        target: [
+        targets: [
           {
             "@name": "VGR1",
             "@id": "31",

@@ -4,12 +4,34 @@ export interface DSNData {
   timestamp: string;
 }
 export interface DSNResponse {
-  dish: Partial<Dish[]>;
+  dish: ResponseDish[];
   station: Station[] | any[]; //TODO: Model stations
   timestamp: string;
 }
 
+// Dish interface after serializing response data
 export interface Dish {
+  "@name": string;
+  "@azimuthAngle": string;
+  "@elevationAngle": string;
+  "@windSpeed": string;
+  "@isMSPA": "true" | "false";
+  "@isArray": "true" | "false";
+  "@isDDOR": "true" | "false";
+  "@created": string;
+  "@updated": string;
+  downSignal: DownSignalEntry[];
+  upSignal: UpSignalEntry[];
+  target?: any;
+  targets: TargetEntry[];
+  metadata: {
+    status: "OFFLINE" | "ONLINE";
+    station: "Goldstone" | "Canberra" | "Madrid";
+  };
+}
+
+// Dish interface from response, before serialization
+export interface ResponseDish {
   "@name": string;
   "@azimuthAngle": string;
   "@elevationAngle": string;
