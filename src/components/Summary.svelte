@@ -2,7 +2,6 @@
   import type { DSNData } from "../data/Models";
   import {
     Tag,
-    TooltipDefinition,
     Accordion,
     AccordionItem,
     InlineLoading,
@@ -33,8 +32,6 @@
       : "";
 
   $: uniqueTargets = getUniqueTargetList(DSNData);
-  // in:fly={{ x: -10, duration: 250 }}
-  // out:fly={{ x: -10, duration: 250 }}
 </script>
 
 <section class="summary-container">
@@ -91,10 +88,14 @@
         </div>
         <div class="target-chip-container">
           {#each uniqueTargets as target (target["id"])}
-            <Tag
-              on:mouseover={() => (selectedChip = target["longName"])}
-              on:mouseleave={() => (selectedChip = "")}>{target["name"]}</Tag
+            <span
+              transition:fade
+              on:click={() => (selectedChip = target["longName"])}
             >
+              <Tag type="cool-gray">
+                {target["name"]}
+              </Tag>
+            </span>
           {/each}
         </div>
       </AccordionItem>
@@ -143,7 +144,7 @@
   .target-chip-container {
     max-width: 320px;
     overflow: auto;
-    padding: 0 0 20%;
+    padding: 15px 0 20%;
   }
 
   .summary-container :global(h3) {

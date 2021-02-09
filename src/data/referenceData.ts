@@ -359,6 +359,31 @@ export const spacecraftMap = {
       },
     ],
   } as Spacecraft,
+
+  95: {
+    id: "95",
+    shortName: "TESS",
+    longName: "Transiting Exoplanet Survey Satellite",
+    sources: [
+      {
+        title: "Transiting Exoplanet Survey Satellite, Wikipedia",
+        url:
+          "https://en.wikipedia.org/wiki/Transiting_Exoplanet_Survey_Satellite",
+      },
+      {
+        title: "TESS Home, MIT",
+        url: "https://tess.mit.edu/",
+      },
+      {
+        title: "TESS Home, NASA",
+        url: "https://exoplanets.nasa.gov/tess/",
+      },
+      {
+        title: "About TESS, NASA",
+        url: "https://www.nasa.gov/content/about-tess",
+      },
+    ],
+  } as Spacecraft,
 };
 
 export const defaultDishList: Dish[] = [
@@ -372,7 +397,7 @@ export const defaultDishList: Dish[] = [
     "@isDDOR": null,
     "@created": null,
     "@updated": null,
-    target: [],
+    targets: [],
     downSignal: [],
     upSignal: [],
     metadata: { status: "OFFLINE", station: "Goldstone" },
@@ -387,7 +412,7 @@ export const defaultDishList: Dish[] = [
     "@isDDOR": null,
     "@created": null,
     "@updated": null,
-    target: [],
+    targets: [],
     downSignal: [],
     upSignal: [],
     metadata: { status: "OFFLINE", station: "Goldstone" },
@@ -403,7 +428,7 @@ export const defaultDishList: Dish[] = [
     "@isDDOR": null,
     "@created": null,
     "@updated": null,
-    target: [],
+    targets: [],
     downSignal: [],
     upSignal: [],
     metadata: { status: "OFFLINE", station: "Goldstone" },
@@ -418,7 +443,7 @@ export const defaultDishList: Dish[] = [
     "@isDDOR": null,
     "@created": null,
     "@updated": null,
-    target: [],
+    targets: [],
     downSignal: [],
     upSignal: [],
     metadata: { status: "OFFLINE", station: "Goldstone" },
@@ -433,7 +458,7 @@ export const defaultDishList: Dish[] = [
     "@isDDOR": null,
     "@created": null,
     "@updated": null,
-    target: [],
+    targets: [],
     downSignal: [],
     upSignal: [],
     metadata: { status: "OFFLINE", station: "Canberra" },
@@ -448,7 +473,7 @@ export const defaultDishList: Dish[] = [
     "@isDDOR": null,
     "@created": null,
     "@updated": null,
-    target: [],
+    targets: [],
     downSignal: [],
     upSignal: [],
     metadata: { status: "OFFLINE", station: "Canberra" },
@@ -463,7 +488,7 @@ export const defaultDishList: Dish[] = [
     "@isDDOR": null,
     "@created": null,
     "@updated": null,
-    target: [],
+    targets: [],
     downSignal: [],
     upSignal: [],
     metadata: { status: "OFFLINE", station: "Canberra" },
@@ -478,7 +503,7 @@ export const defaultDishList: Dish[] = [
     "@isDDOR": null,
     "@created": null,
     "@updated": null,
-    target: [],
+    targets: [],
     downSignal: [],
     upSignal: [],
     metadata: { status: "OFFLINE", station: "Canberra" },
@@ -493,7 +518,7 @@ export const defaultDishList: Dish[] = [
     "@isDDOR": null,
     "@created": null,
     "@updated": null,
-    target: [],
+    targets: [],
     downSignal: [],
     upSignal: [],
     metadata: { status: "OFFLINE", station: "Madrid" },
@@ -508,7 +533,7 @@ export const defaultDishList: Dish[] = [
     "@isDDOR": null,
     "@created": null,
     "@updated": null,
-    target: [],
+    targets: [],
     downSignal: [],
     upSignal: [],
     metadata: { status: "OFFLINE", station: "Madrid" },
@@ -523,7 +548,7 @@ export const defaultDishList: Dish[] = [
     "@isDDOR": null,
     "@created": null,
     "@updated": null,
-    target: [],
+    targets: [],
     downSignal: [],
     upSignal: [],
     metadata: { status: "OFFLINE", station: "Madrid" },
@@ -538,7 +563,7 @@ export const defaultDishList: Dish[] = [
     "@isDDOR": null,
     "@created": null,
     "@updated": null,
-    target: [],
+    targets: [],
     downSignal: [],
     upSignal: [],
     metadata: { status: "OFFLINE", station: "Madrid" },
@@ -553,14 +578,14 @@ export const defaultDishList: Dish[] = [
     "@isDDOR": null,
     "@created": null,
     "@updated": null,
-    target: [],
+    targets: [],
     downSignal: [],
     upSignal: [],
     metadata: { status: "OFFLINE", station: "Madrid" },
   },
 ];
 
-export const mockData = {
+export const mockResponseData = {
   station: [
     {
       "@name": "gdscc",

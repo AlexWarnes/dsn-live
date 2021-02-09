@@ -39,7 +39,7 @@
       return [];
     }
     let tempRefs = [];
-    for (let target of dish["target"]) {
+    for (let target of dish["targets"]) {
       const spacecraft = getSpacecraftDetails(target);
       for (let source of spacecraft["sources"]) {
         tempRefs = [...tempRefs, source];
@@ -54,7 +54,7 @@
   $: downSignalStatus = determineSignalStatus(dish, "downSignal");
 </script>
 
-<span class="rel">
+<span class="rel dish-card-wrapper">
   <article
     class="dish-card-container {dish['metadata']['status']}"
     in:fade={{ duration: 300 }}
@@ -72,11 +72,6 @@
         >
           <Satellite16 style="margin-right: 0.5rem;" />
           Targets
-          <!-- <span
-            class="status-dot {dish['target'] && dish['target'].length > 0
-              ? 'active'
-              : null}"
-          /> -->
         </div>
       </Switch>
       <Switch>
@@ -86,10 +81,6 @@
         >
           <ArrowUp16 style="margin-right: 0.5rem;" />
           Signal
-          <!-- TODO: also limit active based on signal types -->
-          <!-- <span
-            class="status-dot {dish['upSignal'].length > 0 ? 'active' : null}"
-          /> -->
         </div>
       </Switch>
       <Switch>
@@ -99,16 +90,12 @@
         >
           <ArrowDown16 style="margin-right: 0.5rem;" />
           Signal
-          <!-- TODO: also limit active based on signal types -->
-          <!-- <span
-            class="status-dot {dish['downSignal'].length > 0 ? 'active' : null}"
-          /> -->
         </div>
       </Switch>
     </ContentSwitcher>
     <div class="dish-card-content">
       {#if selectedIndex === 0}
-        <TargetDetails targets={dish["target"]} />
+        <TargetDetails targets={dish["targets"]} />
       {:else if selectedIndex === 1}
         <SignalDetails signals={dish["upSignal"]} />
       {:else}
@@ -150,14 +137,19 @@
 />
 
 <style>
+  .dish-card-wrapper {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px 0px;
+  }
   .dish-card-container {
-    width: 400px;
+    width: 100%;
+    max-width: 100%;
     height: 400px;
     line-height: 1.5;
     background: var(--black-alpha);
     border-radius: 2px;
     box-shadow: 3px 3px 5px #00000045;
-    margin: 8px;
     padding: 20px 0 0 0;
     display: flex;
     flex-direction: column;
@@ -193,10 +185,6 @@
     align-items: center;
   }
 
-  /* .OFFLINE {
-    opacity: 0.5;
-  } */
-
   .subtitle {
     opacity: 0.75;
     font-size: 0.75em;
@@ -211,21 +199,11 @@
 
   .abs {
     /* Allows the menu to appear despite the card's overflow hidden */
-    right: 8px;
-    bottom: 8px;
+    right: 1px;
+    bottom: 1px;
   }
 
-  /* .status-dot {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    margin: auto 0.5rem;
-    background-color: var(--coral-1);
-  }
-
-  .status-dot.active {
-    background-color: lime;
-  } */
+  /* CUSTOMIZE CARBON TABS */
 
   .dish-card-container :global(.tab-slot svg) {
     transition: fill 0.2s ease;
@@ -241,8 +219,6 @@
   .dish-card-container :global(.tab-slot.IDLE svg) {
     fill: gold;
   }
-
-  /* CUSTOMIZE CARBON TABS */
 
   .dish-card-container :global(.bx--content-switcher-btn) {
     background: #35394888;

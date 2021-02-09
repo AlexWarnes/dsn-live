@@ -5,6 +5,8 @@
     ModalHeader,
     ModalBody,
     Link,
+    ModalFooter,
+    Button,
   } from "carbon-components-svelte";
   import Launch16 from "carbon-icons-svelte/lib/Launch16";
   import type { Source } from "../../data/Models";
@@ -15,7 +17,7 @@
   export let closeFn = null;
 </script>
 
-<ComposedModal {open} on:close={() => closeFn()}>
+<ComposedModal selectorPrimaryFocus={null} {open} on:close={() => closeFn()}>
   <ModalHeader title="References" />
   <ModalBody>
     {#each references as ref}
@@ -27,6 +29,9 @@
       </div>
     {/each}
   </ModalBody>
+  <ModalFooter>
+    <Button kind="tertiary" on:click={() => closeFn()}>Close</Button>
+  </ModalFooter>
 </ComposedModal>
 
 <style>

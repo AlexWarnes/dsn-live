@@ -19,15 +19,12 @@
           tooltipText={getSpacecraftDetails(target)["longName"] || "UNKNOWN"}
           align="start"
         >
-          <Tag>{target["@name"]}</Tag>
+          <Tag type="cool-gray">{target["@name"]}</Tag>
         </TooltipDefinition>
         <span class="target-detail"
           >{getHumanReadableLightTime(target["@rtlt"])
-            ? getHumanReadableLightTime(target["@rtlt"]) + " @"
-            : ""}</span
-        >
-        <span class="target-detail"
-          >{getHumanReadableRange(target["@downlegRange"])}</span
+            ? getHumanReadableLightTime(target["@rtlt"]) + " @ "
+            : ""}{getHumanReadableRange(target["@downlegRange"])}</span
         >
       </div>
     {/each}
@@ -70,6 +67,10 @@
     align-items: center;
     position: relative;
     margin: 5px 0;
+  }
+
+  .target-row :global(.bx--tag) {
+    word-break: normal;
   }
 
   .target-detail {
