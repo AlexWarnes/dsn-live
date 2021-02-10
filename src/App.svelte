@@ -26,20 +26,20 @@
 </script>
 
 <svelte:window bind:innerWidth={vw} />
+<!-- DESKTOP -->
 {#if vw > 875}
   <Header platformName="Deep Space Network" href="/#/">
     <div class="flex-spacer" />
     <span class="nav-btn-wrapper">
-      <Button href="/#/dashboard" kind="ghost" icon={SatelliteRadar24}
-        >DASHBOARD</Button
-      >
+      <Button href="/#/dashboard" kind="ghost">DASHBOARD</Button>
     </span>
     <span class="nav-btn-wrapper">
-      <Button href="/#/about" kind="ghost" icon={Notebook24}>ABOUT</Button>
+      <Button href="/#/about" kind="ghost">ABOUT</Button>
     </span>
   </Header>
 {:else}
-  <Header platformName="Deep Space Network">
+  <!-- MOBILE -->
+  <Header platformName="Deep Space Network" href="/#/">
     <div class="flex-spacer" />
     <HeaderUtilities>
       <HeaderAction bind:isOpen>

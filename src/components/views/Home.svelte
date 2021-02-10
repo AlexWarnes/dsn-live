@@ -2,7 +2,7 @@
   import { Button, Icon, Link } from "carbon-components-svelte";
   import Launch16 from "carbon-icons-svelte/lib/Launch16";
   import LogoGithub32 from "carbon-icons-svelte/lib/LogoGithub32";
-  import SatelliteRadar24 from "carbon-icons-svelte/lib/SatelliteRadar24";
+  import ArrowRight24 from "carbon-icons-svelte/lib/ArrowRight24";
 </script>
 
 <header>
@@ -10,7 +10,7 @@
     <h1>Deep Space Network</h1>
     <ul>
       <li>
-        <Button href="/#/dashboard" size="default" icon={SatelliteRadar24}
+        <Button href="/#/dashboard" size="default" icon={ArrowRight24}
           >LIVE DASHBOARD</Button
         >
       </li>

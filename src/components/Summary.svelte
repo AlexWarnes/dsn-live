@@ -76,7 +76,7 @@
       </AccordionItem>
       <AccordionItem>
         <div slot="title">
-          <h3>Unique Targets:</h3>
+          <h3>Spacecraft:</h3>
           <div class="targets-row">
             <p>{uniqueTargets.length}</p>
             {#if selectedChip}

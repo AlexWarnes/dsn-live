@@ -71,7 +71,7 @@
           class="tab-slot {targetStatus}"
         >
           <Satellite16 style="margin-right: 0.5rem;" />
-          Targets
+          Spacecraft
         </div>
       </Switch>
       <Switch>
