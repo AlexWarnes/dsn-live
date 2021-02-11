@@ -27,7 +27,7 @@ export function getSpacecraftDetails(target: TargetEntry): Spacecraft {
   if (!spacecraftDetails) {
     console.log(
       "%cNEW SPACECRAFT:",
-      "background: lightseagreen; color: white;",
+      "background: lightseagreen; color: white; padding: 3px;",
       target
     );
     return {
@@ -51,7 +51,11 @@ export async function processDSNResponse(response: any): Promise<DSNData> {
 
   // Merge data into Default Data (shows all dishes, even inactive)
   const DSNDataForDisplay: DSNData = generateDSNDataForUI(jsonResponse);
-  console.log("DSNDataForDisplay", DSNDataForDisplay);
+  console.log(
+    "%cDSNDataForDisplay",
+    "background: #333333; color: white; padding: 3px;",
+    DSNDataForDisplay
+  );
   return DSNDataForDisplay;
 }
 

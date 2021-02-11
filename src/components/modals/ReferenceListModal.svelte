@@ -7,12 +7,13 @@
     Link,
     ModalFooter,
     Button,
+    Tag,
   } from "carbon-components-svelte";
   import Launch16 from "carbon-icons-svelte/lib/Launch16";
-  import type { Source } from "../../data/Models";
+  import type { Source, Spacecraft } from "../../data/Models";
 
   // Inputs
-  export let references: Source[] = [];
+  export let targetDetails: Spacecraft[] = [];
   export let open = false;
   export let closeFn = null;
 </script>
@@ -20,13 +21,22 @@
 <ComposedModal selectorPrimaryFocus={null} {open} on:close={() => closeFn()}>
   <ModalHeader title="References" />
   <ModalBody>
-    {#each references as ref}
-      <div class="ref-row">
-        <Link href={ref.url}
-          >{ref.title}
-          <Icon style="margin: 0 0 0 5px" render={Launch16} /></Link
-        >
+    {#each targetDetails as target (target["id"])}
+      <div class="target-heading">
+        <h3>{target["longName"]}</h3>
+        <Tag type="cool-gray">{target["shortName"]}</Tag>
       </div>
+      {#each target["sources"] as source, idx (idx)}
+        <div class="source-row">
+          <Link href={source.url}
+            >{source.title}
+            <Icon style="margin: 0 0 0 5px" render={Launch16} /></Link
+          >
+        </div>
+        {#if target["sources"].length === 0}
+          <p>No sources available</p>
+        {/if}
+      {/each}
     {/each}
   </ModalBody>
   <ModalFooter>
@@ -35,7 +45,16 @@
 </ComposedModal>
 
 <style>
-  .ref-row {
+  .target-heading {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+  h3 {
+    margin: 15px 8px 0 0;
+    font-size: 1.75em;
+  }
+  .source-row {
     margin: 10px 5px;
   }
 

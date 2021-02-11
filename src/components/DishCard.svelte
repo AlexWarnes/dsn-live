@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Dish, Source } from "../data/Models";
+  import type { Dish, Source, Spacecraft } from "../data/Models";
   import {
     determineSignalStatus,
     determineTargetStatus,
@@ -33,19 +33,17 @@
   let selectedIndex = 0;
 
   // Whenever a dish appears, populate a list of references for it
-  $: targetReferences = updateTargetReferences(dish);
+  $: targetDetails = readTargetDetailsForDish(dish);
 
-  // List of targetEntry references from specified dish
-  const updateTargetReferences = (dish: Dish): Source[] => {
+  // List of spacecraft details from the specified dish
+  const readTargetDetailsForDish = (dish: Dish): Spacecraft[] => {
     if (!dish) {
       return [];
     }
     let tempRefs = [];
     for (let target of dish["targets"]) {
-      const spacecraft = getSpacecraftDetails(target);
-      for (let source of spacecraft["sources"]) {
-        tempRefs = [...tempRefs, source];
-      }
+      const targetDetails = getSpacecraftDetails(target);
+      tempRefs = [...tempRefs, targetDetails];
     }
     return tempRefs;
   };
@@ -78,19 +76,19 @@
     <ContentSwitcher bind:selectedIndex size="sm">
       <Switch>
         <div class="tab-slot --targets">
-          <Satellite16 focusable={false} style="margin-right: 0.5rem;" />
+          <Satellite16 style="margin-right: 0.5rem;" />
           Spacecraft
         </div>
       </Switch>
       <Switch>
         <div class="tab-slot --upSignal">
-          <ArrowUp16 focusable={false} style="margin-right: 0.5rem;" />
+          <ArrowUp16 style="margin-right: 0.5rem;" />
           Signal
         </div>
       </Switch>
       <Switch>
         <div class="tab-slot --downSignal">
-          <ArrowDown16 focusable={false} style="margin-right: 0.5rem;" />
+          <ArrowDown16 style="margin-right: 0.5rem;" />
           Signal
         </div>
       </Switch>
@@ -113,7 +111,7 @@
 
     <!-- FOOTER -->
     <div class="dish-card-footer">
-      <span class="subtitle">Updated: {dish["@updated"]}</span>
+      <span class="subtitle">Updated: {dish["@updated"] || ""}</span>
     </div>
   </article>
   <span class="abs">
@@ -134,7 +132,7 @@
 </span>
 <ReferenceListModal
   open={showReferencesModal}
-  references={targetReferences}
+  {targetDetails}
   closeFn={closeReferencesModal}
 />
 

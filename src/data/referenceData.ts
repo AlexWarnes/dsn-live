@@ -384,6 +384,21 @@ export const spacecraftMap = {
       },
     ],
   } as Spacecraft,
+  39: {
+    id: "39",
+    shortName: "HMAP",
+    longName: "Lunar Polar Hydrogen Mapper (LunaH-Map)",
+    sources: [
+      {
+        title: "Lunar Polar Hydrogen Mapper, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Lunar_Polar_Hydrogen_Mapper",
+      },
+      {
+        title: "LunaH-Map Home, ASU",
+        url: "https://lunahmap.asu.edu/",
+      },
+    ],
+  } as Spacecraft,
 };
 
 export const defaultDishList: Dish[] = [
