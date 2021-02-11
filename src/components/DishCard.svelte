@@ -14,6 +14,7 @@
     OverflowMenuItem,
     ContentSwitcher,
     Switch,
+    InlineLoading,
   } from "carbon-components-svelte";
   import ArrowDown16 from "carbon-icons-svelte/lib/ArrowDown16";
   import ArrowUp16 from "carbon-icons-svelte/lib/ArrowUp16";
@@ -24,7 +25,7 @@
 
   // Inputs
   export let dish: Dish = null;
-
+  export let updating: boolean = false;
   // Modal State
   let showReferencesModal: boolean = false;
   const closeReferencesModal = () => (showReferencesModal = false);
@@ -111,10 +112,13 @@
 
     <!-- FOOTER -->
     <div class="dish-card-footer">
+      {#if updating}
+        <span transition:fade class="abs spinner"><InlineLoading /></span>
+      {/if}
       <span class="subtitle">Updated: {dish["@updated"] || ""}</span>
     </div>
   </article>
-  <span class="abs">
+  <span class="abs buttons">
     <!-- <Button
       kind="ghost"
       tooltipPosition="left"
@@ -197,7 +201,11 @@
     padding: 5px 30px;
   }
 
-  .abs {
+  .abs.spinner {
+    left: 0;
+    bottom: 2px;
+  }
+  .abs.buttons {
     /* Allows the menu to appear despite the card's overflow hidden */
     right: 1px;
     bottom: 1px;

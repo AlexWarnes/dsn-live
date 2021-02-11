@@ -59,7 +59,7 @@
   <Summary {DSNData} {latestRequest} {nextRequest} />
   <div class="dish-grid">
     {#each DSNData["dishes"] as dish (dish["@name"])}
-      <DishCard {dish} />
+      <DishCard {dish} updating={nextRequest <= 0} />
     {/each}
   </div>
 {:else}
