@@ -78,7 +78,7 @@
       <Switch>
         <div class="tab-slot --targets">
           <Satellite16 style="margin-right: 0.5rem;" />
-          Spacecraft
+          Target
         </div>
       </Switch>
       <Switch>

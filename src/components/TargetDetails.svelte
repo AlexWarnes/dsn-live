@@ -29,7 +29,7 @@
       </div>
     {/each}
   {:else}
-    <p>No Spacecraft</p>
+    <p>No Target Spacecraft</p>
   {/if}
 </div>
 
