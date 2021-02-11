@@ -605,6 +605,22 @@ export const spacecraftMap = {
       },
     ],
   } as Spacecraft,
+  199: {
+    id: "199",
+    shortName: "INTG",
+    longName: "INTEGRAL",
+    sources: [
+      {
+        title: "INTEGRAL, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/INTEGRAL",
+      },
+      {
+        title: "INTEGRAL, European Space Agency (ESA)",
+        url:
+          "https://www.esa.int/Science_Exploration/Space_Science/Integral_overview",
+      },
+    ],
+  } as Spacecraft,
 };
 
 export const defaultDishList: Dish[] = [
