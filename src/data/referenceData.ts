@@ -26,6 +26,10 @@ export const spacecraftMap = {
         title: "Parker Solar Probe, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Parker_Solar_Probe",
       },
+      {
+        title: "Parker Solar Probe, NASA",
+        url: "https://www.nasa.gov/content/goddard/parker-solar-probe",
+      },
     ],
   } as Spacecraft,
   234: {
@@ -36,6 +40,10 @@ export const spacecraftMap = {
       {
         title: "STEREO, Wikipedia",
         url: "https://en.wikipedia.org/wiki/STEREO",
+      },
+      {
+        title: "STEREO, NASA",
+        url: "https://www.nasa.gov/mission_pages/stereo/main/index.html",
       },
     ],
   } as Spacecraft,
@@ -48,6 +56,14 @@ export const spacecraftMap = {
         title: "OSIRIS-REx, Wikipedia",
         url: "https://en.wikipedia.org/wiki/OSIRIS-REx",
       },
+      {
+        title: "OSIRIS-REx, NASA",
+        url: "https://www.nasa.gov/osiris-rex",
+      },
+      {
+        title: "OSIRIS-REx in Depth, NASA Science",
+        url: "https://solarsystem.nasa.gov/missions/osiris-rex/in-depth/",
+      },
     ],
   } as Spacecraft,
   168: {
@@ -58,6 +74,14 @@ export const spacecraftMap = {
       {
         title: "Perseverance (rover), Wikipedia",
         url: "https://en.wikipedia.org/wiki/Perseverance_(rover)",
+      },
+      {
+        title: "Perseverance, NASA Mars Missions",
+        url: "https://mars.nasa.gov/mars2020/",
+      },
+      {
+        title: "Perseverance, NASA",
+        url: "https://www.nasa.gov/perseverance",
       },
     ],
   } as Spacecraft,
@@ -70,6 +94,10 @@ export const spacecraftMap = {
         title: "Emirates Mars Mission (Hope), Wikipedia",
         url: "https://en.wikipedia.org/wiki/Emirates_Mars_Mission",
       },
+      {
+        title: "Emirates Mars Mission (Hope), UAE Space Agency",
+        url: "https://www.emiratesmarsmission.ae/",
+      },
     ],
   } as Spacecraft,
   202: {
@@ -80,6 +108,14 @@ export const spacecraftMap = {
       {
         title: "MAVEN, Wikipedia",
         url: "https://en.wikipedia.org/wiki/MAVEN",
+      },
+      {
+        title: "MAVEN, NASA Mars Missions",
+        url: "https://mars.nasa.gov/maven/",
+      },
+      {
+        title: "MAVEN, NASA",
+        url: "https://www.nasa.gov/mission_pages/maven/main/index.html",
       },
     ],
   } as Spacecraft,
@@ -92,6 +128,10 @@ export const spacecraftMap = {
         title: "Mars Odyssey, Wikipedia",
         url: "https://en.wikipedia.org/wiki/2001_Mars_Odyssey",
       },
+      {
+        title: "Mars Odyssey, NASA Mars Missions",
+        url: "https://mars.nasa.gov/odyssey/",
+      },
     ],
   } as Spacecraft,
   76: {
@@ -102,6 +142,14 @@ export const spacecraftMap = {
       {
         title: "Curiosity (rover), Wikipedia",
         url: "https://en.wikipedia.org/wiki/Curiosity_(rover)",
+      },
+      {
+        title: "Curiosity, NASA Mars Missions",
+        url: "https://mars.nasa.gov/msl/home/",
+      },
+      {
+        title: "Curiosity, NASA",
+        url: "https://www.nasa.gov/mission_pages/msl/index.html",
       },
     ],
   } as Spacecraft,
@@ -114,6 +162,15 @@ export const spacecraftMap = {
         title: "Trace Gas Orbiter, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Trace_Gas_Orbiter",
       },
+      {
+        title: "Trace Gas Orbiter, European Space Agency (ESA)",
+        url: "https://exploration.esa.int/web/mars/-/46475-trace-gas-orbiter",
+      },
+      {
+        title: "Trace Gas Orbiter Instruments, European Space Agency (ESA)",
+        url:
+          "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Exploration/ExoMars/Trace_Gas_Orbiter_instruments",
+      },
     ],
   } as Spacecraft,
   74: {
@@ -124,6 +181,14 @@ export const spacecraftMap = {
       {
         title: "Mars Reconnaissance Orbiter, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Mars_Reconnaissance_Orbiter",
+      },
+      {
+        title: "Mars Reconnaissance Orbiter, NASA Mars Missions",
+        url: "https://mars.nasa.gov/mro/",
+      },
+      {
+        title: "Mars Reconnaissance Orbiter, NASA",
+        url: "https://www.nasa.gov/mission_pages/MRO/main/index.html",
       },
     ],
   } as Spacecraft,
@@ -136,6 +201,14 @@ export const spacecraftMap = {
         title: "Voyager 2, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Voyager_2",
       },
+      {
+        title: "Voyager 2, NASA/JPL",
+        url: "https://voyager.jpl.nasa.gov/",
+      },
+      {
+        title: "Voyager 2 in Depth, NASA Science",
+        url: "https://solarsystem.nasa.gov/missions/voyager-2/in-depth/",
+      },
     ],
   } as Spacecraft,
   151: {
@@ -146,6 +219,14 @@ export const spacecraftMap = {
       {
         title: "Chandra X-ray Observatory, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Chandra_X-ray_Observatory",
+      },
+      {
+        title: "Chandra X-ray Observatory, NASA",
+        url: "https://www.nasa.gov/mission_pages/chandra/main/index.html",
+      },
+      {
+        title: "Chandra X-ray Observatory, Harvard",
+        url: "https://chandra.harvard.edu/",
       },
     ],
   } as Spacecraft,
@@ -158,6 +239,14 @@ export const spacecraftMap = {
         title: "Lunar Reconnaissance Orbiter, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Lunar_Reconnaissance_Orbiter",
       },
+      {
+        title: "Lunar Reconnaissance Orbiter, NASA",
+        url: "https://www.nasa.gov/mission_pages/LRO/main/index.html",
+      },
+      {
+        title: "Lunar Reconnaissance Orbiter Camera, ASU",
+        url: "https://www.lroc.asu.edu/",
+      },
     ],
   } as Spacecraft,
   21: {
@@ -168,6 +257,20 @@ export const spacecraftMap = {
       {
         title: "Solar and Heliospheric Observatory, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Solar_and_Heliospheric_Observatory",
+      },
+      {
+        title:
+          "Solar and Heliospheric Observatory, European Space Agency (ESA)",
+        url:
+          "https://www.esa.int/Science_Exploration/Space_Science/SOHO_overview2",
+      },
+      {
+        title: "Solar and Heliospheric Observatory, NASA",
+        url: "https://www.nasa.gov/mission_pages/soho/index.html",
+      },
+      {
+        title: "SOHO in Depth, NASA Science",
+        url: "https://solarsystem.nasa.gov/missions/soho/in-depth/",
       },
     ],
   } as Spacecraft,
@@ -180,6 +283,18 @@ export const spacecraftMap = {
         title: "Voyager 1, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Voyager_1",
       },
+      {
+        title: "Voyager 1, NASA/JPL",
+        url: "https://voyager.jpl.nasa.gov/",
+      },
+      {
+        title: "Voyager 1, NASA",
+        url: "https://www.nasa.gov/mission_pages/voyager/index.html",
+      },
+      {
+        title: "Voyager 1 in Depth, NASA Science",
+        url: "https://solarsystem.nasa.gov/missions/voyager-1/in-depth/",
+      },
     ],
   } as Spacecraft,
   1: {
@@ -190,6 +305,15 @@ export const spacecraftMap = {
       {
         title: "Geotail, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Geotail",
+      },
+      {
+        title: "Geotail, Japan Aerospace Exploration Agency (JAXA)",
+        url:
+          "http://www.isas.jaxa.jp/en/missions/spacecraft/current/geotail.html",
+      },
+      {
+        title: "Geotail in Depth, NASA Science",
+        url: "https://solarsystem.nasa.gov/missions/geotail/in-depth/",
       },
     ],
   } as Spacecraft,
@@ -214,6 +338,18 @@ export const spacecraftMap = {
         title: "Juno, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Juno_(spacecraft)",
       },
+      {
+        title: "Juno, NASA",
+        url: "https://www.nasa.gov/mission_pages/juno/main/index.html",
+      },
+      {
+        title: "Juno in Depth, NASA Science",
+        url: "https://solarsystem.nasa.gov/missions/juno/overview/",
+      },
+      {
+        title: "Juno, SWRI",
+        url: "https://www.missionjuno.swri.edu/",
+      },
     ],
   } as Spacecraft,
   78: {
@@ -224,6 +360,11 @@ export const spacecraftMap = {
       {
         title: "Deep Space Climate Observatory, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Deep_Space_Climate_Observatory",
+      },
+      {
+        title: "Deep Space Climate Observatory, NOAA",
+        url:
+          "https://www.nesdis.noaa.gov/content/dscovr-deep-space-climate-observatory",
       },
     ],
   } as Spacecraft,
@@ -247,6 +388,10 @@ export const spacecraftMap = {
         title: "Magnetospheric Multiscale Mission, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Magnetospheric_Multiscale_Mission",
       },
+      {
+        title: "Magnetospheric Multiscale Mission, NASA",
+        url: "https://www.nasa.gov/mission_pages/mms/index.html",
+      },
     ],
   } as Spacecraft,
   109: {
@@ -257,6 +402,10 @@ export const spacecraftMap = {
       {
         title: "Magnetospheric Multiscale Mission, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Magnetospheric_Multiscale_Mission",
+      },
+      {
+        title: "Magnetospheric Multiscale Mission, NASA",
+        url: "https://www.nasa.gov/mission_pages/mms/index.html",
       },
     ],
   } as Spacecraft,
@@ -269,6 +418,10 @@ export const spacecraftMap = {
         title: "Magnetospheric Multiscale Mission, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Magnetospheric_Multiscale_Mission",
       },
+      {
+        title: "Magnetospheric Multiscale Mission, NASA",
+        url: "https://www.nasa.gov/mission_pages/mms/index.html",
+      },
     ],
   } as Spacecraft,
   113: {
@@ -279,6 +432,10 @@ export const spacecraftMap = {
       {
         title: "Magnetospheric Multiscale Mission, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Magnetospheric_Multiscale_Mission",
+      },
+      {
+        title: "Magnetospheric Multiscale Mission, NASA",
+        url: "https://www.nasa.gov/mission_pages/mms/index.html",
       },
     ],
   } as Spacecraft,
@@ -291,6 +448,10 @@ export const spacecraftMap = {
         title: "THEMIS, Wikipedia",
         url: "https://en.wikipedia.org/wiki/THEMIS",
       },
+      {
+        title: "THEMIS and ARTEMIS, NASA",
+        url: "https://www.nasa.gov/themis-and-artemis",
+      },
     ],
   } as Spacecraft,
   193: {
@@ -301,6 +462,10 @@ export const spacecraftMap = {
       {
         title: "THEMIS, Wikipedia",
         url: "https://en.wikipedia.org/wiki/THEMIS",
+      },
+      {
+        title: "THEMIS and ARTEMIS, NASA",
+        url: "https://www.nasa.gov/themis-and-artemis",
       },
     ],
   } as Spacecraft,
@@ -313,6 +478,18 @@ export const spacecraftMap = {
         title: "InSight, Wikipedia",
         url: "https://en.wikipedia.org/wiki/InSight",
       },
+      {
+        title: "InSight, NASA",
+        url: "https://www.nasa.gov/mission_pages/insight/main/index.html",
+      },
+      {
+        title: "InSight in Depth, NASA Science",
+        url: "https://solarsystem.nasa.gov/missions/insight/in-depth/",
+      },
+      {
+        title: "InSight, NASA Mars Missions",
+        url: "https://mars.nasa.gov/insight/",
+      },
     ],
   } as Spacecraft,
   41: {
@@ -323,6 +500,15 @@ export const spacecraftMap = {
       {
         title: "Mars Express, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Mars_Express",
+      },
+      {
+        title: "Mars Express in Depth, NASA Science",
+        url: "https://solarsystem.nasa.gov/missions/mars-express/in-depth/",
+      },
+      {
+        title: "Mars Express, European Space Agency (ESA)",
+        url:
+          "https://www.esa.int/Science_Exploration/Space_Science/Mars_Express",
       },
     ],
   } as Spacecraft,
@@ -335,6 +521,10 @@ export const spacecraftMap = {
         title: "Advanced Composition Explorer, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Advanced_Composition_Explorer",
       },
+      {
+        title: "Advanced Composition Explorer in Depth, NASA Science",
+        url: "https://solarsystem.nasa.gov/missions/ace/in-depth/",
+      },
     ],
   } as Spacecraft,
   98: {
@@ -346,6 +536,18 @@ export const spacecraftMap = {
         title: "New Horizons, Wikipedia",
         url: "https://en.wikipedia.org/wiki/New_Horizons",
       },
+      {
+        title: "New Horizons, NASA",
+        url: "https://www.nasa.gov/mission_pages/newhorizons/main/index.html",
+      },
+      {
+        title: "New Horizons in Depth, NASA Science",
+        url: "https://solarsystem.nasa.gov/missions/new-horizons/in-depth/",
+      },
+      {
+        title: "New Horizons, Johns Hopkins Applied Physics Laboratory",
+        url: "http://pluto.jhuapl.edu/",
+      },
     ],
   } as Spacecraft,
   8: {
@@ -356,6 +558,10 @@ export const spacecraftMap = {
       {
         title: "WIND, Wikipedia",
         url: "https://en.wikipedia.org/wiki/Wind_(spacecraft)",
+      },
+      {
+        title: "WIND, NASA",
+        url: "https://wind.nasa.gov/",
       },
     ],
   } as Spacecraft,
