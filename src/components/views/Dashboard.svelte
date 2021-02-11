@@ -5,7 +5,8 @@
   import DishCard from "../DishCard.svelte";
   import { processDSNResponse } from "../../util/utils";
   import type { DSNData } from "../../data/Models";
-  import { onDestroy, onMount } from "svelte";
+  import { onMount } from "svelte";
+  import { generateMockData } from "../../data/mockData";
   const dsnURL: string = "https://eyes.nasa.gov/dsn/data/dsn.xml";
   let latestRequest: string = "";
   let requestIntervalUnits = 60;

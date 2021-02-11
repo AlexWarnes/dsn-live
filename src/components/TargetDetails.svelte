@@ -28,26 +28,8 @@
         >
       </div>
     {/each}
-    <!-- <DataTable
-      size="compact"
-      headers={[
-        { key: "longName", value: "Name" },
-        { key: "@name", value: "Abbr" },
-        { key: "@downlegRange", value: "Range" },
-        { key: "@rtld", value: "Light Hours" },
-      ]}
-      rows={targets.map((t) => {
-        return {
-          ...t,
-          id: t["@id"],
-          longName: getSpacecraftDetails(t).longName,
-          "@rtld": getHumanReadableLightTime(t["@rtlt"]),
-          "@downlegRange": getHumanReadableRange(t["@downlegRange"]),
-        };
-      })}
-    /> -->
   {:else}
-    <p>No Targets</p>
+    <p>No Spacecraft</p>
   {/if}
 </div>
 

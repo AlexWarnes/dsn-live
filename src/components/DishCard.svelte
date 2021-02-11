@@ -9,7 +9,6 @@
   import ElevationViz from "./ElevationViz.svelte";
   import ReferenceListModal from "./modals/ReferenceListModal.svelte";
   import { fade } from "svelte/transition";
-
   import {
     OverflowMenu,
     OverflowMenuItem,
@@ -26,13 +25,16 @@
   // Inputs
   export let dish: Dish = null;
 
-  // Component State
+  // Modal State
   let showReferencesModal: boolean = false;
   const closeReferencesModal = () => (showReferencesModal = false);
+
+  // Selected Tab
   let selectedIndex = 0;
 
   // Whenever a dish appears, populate a list of references for it
   $: targetReferences = updateTargetReferences(dish);
+
   // List of targetEntry references from specified dish
   const updateTargetReferences = (dish: Dish): Source[] => {
     if (!dish) {
@@ -48,7 +50,7 @@
     return tempRefs;
   };
 
-  // Determine the status/style of each tab
+  // Determine the status for styling of each tab (this gets crazy)
   $: targetStatus = determineTargetStatus(dish);
   $: upSignalStatus = determineSignalStatus(dish, "upSignal");
   $: downSignalStatus = determineSignalStatus(dish, "downSignal");
@@ -56,39 +58,39 @@
 
 <span class="rel dish-card-wrapper">
   <article
-    class="dish-card-container {dish['metadata']['status']}"
+    class="dish-card-container 
+    {dish['metadata'][
+      'status'
+    ]} 
+    <!-- Enable dynamic styling without triggering ContentSwitcher autofocus (weird, I know) -->
+    {`${targetStatus}-targets`}
+    {`${upSignalStatus}-upSignal`}
+    {`${downSignalStatus}-downSignal`} "
     in:fade={{ duration: 300 }}
   >
+    <!-- HEADER -->
     <div class="dish-card-header">
       <h2>{dish["@name"]}</h2>
       <span>{dish["metadata"]["station"].toUpperCase()}</span>
     </div>
 
+    <!-- TABS -->
     <ContentSwitcher bind:selectedIndex size="sm">
       <Switch>
-        <div
-          style="display: flex; align-items: center;"
-          class="tab-slot {targetStatus}"
-        >
-          <Satellite16 style="margin-right: 0.5rem;" />
+        <div class="tab-slot --targets">
+          <Satellite16 focusable={false} style="margin-right: 0.5rem;" />
           Spacecraft
         </div>
       </Switch>
       <Switch>
-        <div
-          style="display: flex; align-items: center;"
-          class="tab-slot {upSignalStatus}"
-        >
-          <ArrowUp16 style="margin-right: 0.5rem;" />
+        <div class="tab-slot --upSignal">
+          <ArrowUp16 focusable={false} style="margin-right: 0.5rem;" />
           Signal
         </div>
       </Switch>
       <Switch>
-        <div
-          style="display: flex; align-items: center;"
-          class="tab-slot {downSignalStatus}"
-        >
-          <ArrowDown16 style="margin-right: 0.5rem;" />
+        <div class="tab-slot --downSignal">
+          <ArrowDown16 focusable={false} style="margin-right: 0.5rem;" />
           Signal
         </div>
       </Switch>
@@ -103,11 +105,13 @@
       {/if}
     </div>
 
+    <!-- ELEVATION and AZIMUTH VIZ -->
     <div class="viz-row">
       <ElevationViz elevationAngle={dish["@elevationAngle"]} />
       <AzimuthViz azimuthAngle={dish["@azimuthAngle"]} />
     </div>
-    <!-- </div> -->
+
+    <!-- FOOTER -->
     <div class="dish-card-footer">
       <span class="subtitle">Updated: {dish["@updated"]}</span>
     </div>
@@ -121,8 +125,6 @@
       icon={Maximize16}
     /> -->
     <OverflowMenu flipped>
-      <!-- TODO: Models -->
-      <!-- <OverflowMenuItem>Models</OverflowMenuItem> -->
       <!-- <OverflowMenuItem>Maximize</OverflowMenuItem> -->
       <OverflowMenuItem on:click={() => (showReferencesModal = true)}>
         Learn More
@@ -204,22 +206,13 @@
   }
 
   /* CUSTOMIZE CARBON TABS */
-
+  .tab-slot {
+    display: flex;
+    align-items: center;
+  }
   .dish-card-container :global(.tab-slot svg) {
     transition: fill 0.2s ease;
   }
-
-  .dish-card-container :global(.tab-slot.ACTIVE svg) {
-    fill: lime;
-  }
-  .dish-card-container :global(.tab-slot.NONE svg) {
-    fill: var(--coral-1);
-  }
-
-  .dish-card-container :global(.tab-slot.IDLE svg) {
-    fill: gold;
-  }
-
   .dish-card-container :global(.bx--content-switcher-btn) {
     background: #35394888;
     border-bottom: 1px solid transparent;
@@ -246,5 +239,38 @@
   .dish-card-container :global(.bx--content-switcher) {
     width: 95%;
     margin: 0 auto;
+  }
+
+  /* Enable dynamic SVG styling without triggering Switch autofocus (weird, I know)
+  This monstrosity avoids a bug with the ContentSwitcher whereby any dynamic classes
+  inside the Switch slot would auto focus and scroll into view. This was super annoying
+  if you were looking at the dashboard and updates caused your view to jump around.
+  */
+  .dish-card-container.ACTIVE-targets :global(.tab-slot.--targets svg) {
+    fill: lime;
+  }
+  .dish-card-container.ACTIVE-upSignal :global(.tab-slot.--upSignal svg) {
+    fill: lime;
+  }
+  .dish-card-container.ACTIVE-downSignal :global(.tab-slot.--downSignal svg) {
+    fill: lime;
+  }
+  .dish-card-container.IDLE-targets :global(.tab-slot.--targets svg) {
+    fill: gold;
+  }
+  .dish-card-container.IDLE-upSignal :global(.tab-slot.--upSignal svg) {
+    fill: gold;
+  }
+  .dish-card-container.IDLE-downSignal :global(.tab-slot.--downSignal svg) {
+    fill: gold;
+  }
+  .dish-card-container.NONE-targets :global(.tab-slot.--targets svg) {
+    fill: var(--coral-1);
+  }
+  .dish-card-container.NONE-upSignal :global(.tab-slot.--upSignal svg) {
+    fill: var(--coral-1);
+  }
+  .dish-card-container.NONE-downSignal :global(.tab-slot.--downSignal svg) {
+    fill: var(--coral-1);
   }
 </style>
