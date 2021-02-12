@@ -49,6 +49,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
+    flex-wrap: wrap;
   }
   h3 {
     margin: 15px 8px 0 0;
