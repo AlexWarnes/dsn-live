@@ -16,8 +16,8 @@
       </li>
       <li>
         <p>
-          <span class="bold">Monitor</span> signals sent between NASA's Deep Space
-          Network and spacecraft in real time.
+          <span class="bold">Monitor</span> connections between NASA/JPL and interplanetary
+          spacecraft missions in real time.
         </p>
       </li>
       <li>

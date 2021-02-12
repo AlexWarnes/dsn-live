@@ -253,13 +253,13 @@
   if you were looking at the dashboard and updates caused your view to jump around.
   */
   .dish-card-container.ACTIVE-targets :global(.tab-slot.--targets svg) {
-    fill: lime;
+    fill: #00ff00;
   }
   .dish-card-container.ACTIVE-upSignal :global(.tab-slot.--upSignal svg) {
-    fill: lime;
+    fill: #00ff00;
   }
   .dish-card-container.ACTIVE-downSignal :global(.tab-slot.--downSignal svg) {
-    fill: lime;
+    fill: #00ff00;
   }
   .dish-card-container.IDLE-targets :global(.tab-slot.--targets svg) {
     fill: gold;

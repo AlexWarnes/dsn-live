@@ -1,0 +1,21 @@
+{
+  "name": "Deep Space Network",
+  "short_name": "DSN Live",
+  "start_url": "/index.html",
+  "theme_color": "#272a35",
+  "background_color": "#272a35",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
