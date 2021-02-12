@@ -9,7 +9,7 @@
   import { generateMockData } from "../../data/mockData";
   const dsnURL: string = "https://eyes.nasa.gov/dsn/data/dsn.xml";
   let latestRequest: string = "";
-  let requestIntervalUnits = 60;
+  let requestIntervalUnits = 15;
   let nextRequest: number = 0;
 
   let DSNData: DSNData = null;
