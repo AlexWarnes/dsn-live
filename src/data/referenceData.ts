@@ -621,6 +621,25 @@ export const spacecraftMap = {
       },
     ],
   } as Spacecraft,
+  5: {
+    id: "5",
+    shortName: "PLC",
+    longName: "Akatsuki",
+    sources: [
+      {
+        title: "Akatsuki, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Akatsuki_(spacecraft)",
+      },
+      {
+        title: "Akatsuki, Japan Aerospace Exploration Agency (JAXA)",
+        url: "http://www.stp.isas.jaxa.jp/venus/top_english.html",
+      },
+      {
+        title: "Akatsuki in Depth, NASA Science",
+        url: "https://solarsystem.nasa.gov/missions/akatsuki/in-depth/",
+      },
+    ],
+  } as Spacecraft,
 };
 
 export const defaultDishList: Dish[] = [
