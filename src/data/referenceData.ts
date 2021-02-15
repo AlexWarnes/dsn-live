@@ -640,6 +640,12 @@ export const spacecraftMap = {
       },
     ],
   } as Spacecraft,
+  219: {
+    id: "219",
+    shortName: "HCRA",
+    longName: "Testing",
+    sources: [],
+  } as Spacecraft,
 };
 
 export const defaultDishList: Dish[] = [
