@@ -115,7 +115,11 @@
       {#if updating}
         <span transition:fade class="abs spinner"><InlineLoading /></span>
       {/if}
-      <span class="subtitle">Updated: {dish["@updated"] || ""}</span>
+      <span class="subtitle"
+        >Updated: {dish["@updated"]
+          ? new Date(dish["updated"]).toLocaleString()
+          : ""}</span
+      >
     </div>
   </article>
   <span class="abs buttons">

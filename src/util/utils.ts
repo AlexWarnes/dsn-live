@@ -90,15 +90,6 @@ function generateDSNDataForUI(
     }
   });
 
-  // const compareFn = (a, b) => {
-  //   if (a["metadata"]["status"] < b["metadata"]["status"]) {
-  //     return 1;
-  //   } else {
-  //     return -1;
-  //   }
-  // };
-  // const sortedDishes = updatedDishes.sort(compareFn);
-
   return { ...serializedDSNData, dishes: updatedDishes };
 }
 
@@ -301,4 +292,46 @@ export const getUniqueTargetList = (
     }
   }
   return fullList;
+};
+
+export const getSummarizedDataByStation = (
+  stationName: "goldstone" | "madrid" | "canberra",
+  dsnData: DSNData
+): any[] => {
+  const { dishes, stations } = dsnData;
+  // TODO: Add station local time
+  let summarizedDishList = [];
+
+  // Get only dishes for specified station
+  summarizedDishList = dishes.filter(
+    (dish) =>
+      dish.metadata.station.toLowerCase() === stationName &&
+      dish["targets"].length > 0
+  );
+
+  // Only include signal status
+  summarizedDishList = summarizedDishList.map((dish) => {
+    const abbreviatedTargets = dish["targets"].map(
+      (target: TargetEntry) => target["@name"]
+    );
+    const upSignalStatus = determineSignalStatus(dish, "upSignal");
+    const downSignalStatus = determineSignalStatus(dish, "downSignal");
+    return {
+      "@name": dish["@name"],
+      upSignalStatus,
+      downSignalStatus,
+      abbreviatedTargets,
+    };
+  });
+
+  // array of objs
+  // each obj is active dish at the station
+  // dish, upSignalStatus, downSignalStatus, targets...
+
+  console.log("getSummarizedDataByStation", {
+    stationName,
+    summarizedDishList,
+  });
+
+  return summarizedDishList;
 };

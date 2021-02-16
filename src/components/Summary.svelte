@@ -1,14 +1,25 @@
 <script lang="ts">
   import type { DSNData } from "../data/Models";
+  import StationSummaryChart from "./StationSummaryChart.svelte";
   import {
     Tag,
     Accordion,
     AccordionItem,
     InlineLoading,
+    DataTable,
+    Toolbar,
+    ToolbarContent,
   } from "carbon-components-svelte";
+  import ArrowDown16 from "carbon-icons-svelte/lib/ArrowDown16";
+  import ArrowUp16 from "carbon-icons-svelte/lib/ArrowUp16";
+
   import { fly, fade } from "svelte/transition";
 
-  import { getUniqueTargetList, updateStationCount } from "../util/utils";
+  import {
+    getSummarizedDataByStation,
+    getUniqueTargetList,
+    updateStationCount,
+  } from "../util/utils";
 
   export let DSNData: DSNData = null;
   export let latestRequest: string = "";
@@ -32,6 +43,9 @@
       : "";
 
   $: uniqueTargets = getUniqueTargetList(DSNData);
+  $: goldstoneSummary = getSummarizedDataByStation("goldstone", DSNData);
+  $: madridSummary = getSummarizedDataByStation("madrid", DSNData);
+  $: canberraSummary = getSummarizedDataByStation("canberra", DSNData);
 </script>
 
 <section class="summary-container">
@@ -65,41 +79,25 @@
         <p>Latest Request: {latestRequest}</p>
         <p>Next Request: {nextRequest ? nextRequest + "s" : "Loading..."}</p>
       </AccordionItem>
-      <AccordionItem>
-        <div slot="title">
-          <h3>Dishes Online:</h3>
-          <p>{dishesOnline}</p>
-        </div>
-        <p>Goldstone: {dishesByStation["Goldstone"]}</p>
-        <p>Madrid: {dishesByStation["Madrid"]}</p>
-        <p>Canberra: {dishesByStation["Canberra"]}</p>
-      </AccordionItem>
-      <AccordionItem>
-        <div slot="title">
-          <h3>Target Spacecraft:</h3>
-          <div class="targets-row">
-            <p>{uniqueTargets.length}</p>
-            {#if selectedChip}
-              <p class="selection" transition:fade={{ duration: 200 }}>
-                {selectedChip}
-              </p>
-            {/if}
-          </div>
-        </div>
-        <div class="target-chip-container">
-          {#each uniqueTargets as target (target["id"])}
-            <span
-              transition:fade
-              on:click={() => (selectedChip = target["longName"])}
-            >
-              <Tag type="cool-gray">
-                {target["name"]}
-              </Tag>
-            </span>
-          {/each}
-        </div>
-      </AccordionItem>
     </Accordion>
+    <!-- Data Table -->
+    <article class="station-summary-container">
+      <h3>Summary of Station Activity</h3>
+      <div class="station-summary-flex-row">
+        <div class="summary-box">
+          <h4 class="station-name">GOLDSTONE</h4>
+          <StationSummaryChart stationSummary={goldstoneSummary} />
+        </div>
+        <div class="summary-box">
+          <h4 class="station-name">MADRID</h4>
+          <StationSummaryChart stationSummary={madridSummary} />
+        </div>
+        <div class="summary-box">
+          <h4 class="station-name">CANBERRA</h4>
+          <StationSummaryChart stationSummary={canberraSummary} />
+        </div>
+      </div>
+    </article>
   {:else}
     <p>Loading...</p>
   {/if}
@@ -127,6 +125,17 @@
     font-size: 0.75em;
   }
 
+  .station-summary-container {
+    padding: 10px 20px;
+  }
+
+  .station-summary-flex-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
   .targets-row {
     display: flex;
     justify-content: flex-start;
@@ -147,8 +156,17 @@
     padding: 15px 0 20%;
   }
 
+  .summary-box {
+    flex-grow: 1;
+    margin: 12px 0 4px 0;
+  }
+
   .summary-container :global(h3) {
     font-size: 1.25em;
+    font-weight: 600;
+  }
+  h4 {
+    font-size: 1em;
     font-weight: 600;
   }
 
@@ -164,5 +182,9 @@
 
   .summary-container :global(.bx--loading__stroke) {
     stroke: var(--blue-1);
+  }
+
+  .summary-container :global(.bx--data-table-header) {
+    background: transparent;
   }
 </style>
