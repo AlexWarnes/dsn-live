@@ -324,14 +324,5 @@ export const getSummarizedDataByStation = (
     };
   });
 
-  // array of objs
-  // each obj is active dish at the station
-  // dish, upSignalStatus, downSignalStatus, targets...
-
-  console.log("getSummarizedDataByStation", {
-    stationName,
-    summarizedDishList,
-  });
-
   return summarizedDishList;
 };

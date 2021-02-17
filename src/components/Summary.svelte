@@ -15,34 +15,17 @@
 
   import { fly, fade } from "svelte/transition";
 
-  import {
-    getSummarizedDataByStation,
-    getUniqueTargetList,
-    updateStationCount,
-  } from "../util/utils";
+  import { getSummarizedDataByStation } from "../util/utils";
 
   export let DSNData: DSNData = null;
   export let latestRequest: string = "";
   export let nextRequest: number = 0;
-  let selectedChip = "";
-  let dishesOnline = 0;
-  let dishesByStation = {
-    Goldstone: 0,
-    Madrid: 0,
-    Canberra: 0,
-  };
-  $: {
-    let counts = updateStationCount(DSNData);
-    dishesOnline = counts["dishTotal"];
-    dishesByStation = counts["dishCountByStation"];
-  }
 
   $: dataTimestamp =
     DSNData && DSNData.timestamp
       ? new Date(Number(DSNData.timestamp)).toLocaleString()
       : "";
 
-  $: uniqueTargets = getUniqueTargetList(DSNData);
   $: goldstoneSummary = getSummarizedDataByStation("goldstone", DSNData);
   $: madridSummary = getSummarizedDataByStation("madrid", DSNData);
   $: canberraSummary = getSummarizedDataByStation("canberra", DSNData);
