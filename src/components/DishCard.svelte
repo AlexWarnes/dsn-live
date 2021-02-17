@@ -117,7 +117,7 @@
       {/if}
       <span class="subtitle"
         >Updated: {dish["@updated"]
-          ? new Date(dish["updated"]).toLocaleString()
+          ? new Date(dish["@updated"]).toLocaleString()
           : ""}</span
       >
     </div>
