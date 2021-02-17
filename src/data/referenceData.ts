@@ -666,6 +666,36 @@ export const spacecraftMap = {
       },
     ],
   } as Spacecraft,
+  26: {
+    id: "26",
+    shortName: "GSSR",
+    longName: "Goldstone Solar System Radar",
+    sources: [
+      {
+        title: "Goldstone Solar System Radar, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Goldstone_Solar_System_Radar",
+      },
+      {
+        title: "GSSR Home, JPL",
+        url: "https://gssr.jpl.nasa.gov/",
+      },
+    ],
+  } as Spacecraft,
+  123: {
+    id: "123",
+    shortName: "GAIA",
+    longName: "Gaia",
+    sources: [
+      {
+        title: "Gaia (spacecraft), Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Gaia_(spacecraft)",
+      },
+      {
+        title: "Gaia, European Space Agency (ESA)",
+        url: "https://sci.esa.int/web/gaia",
+      },
+    ],
+  } as Spacecraft,
 };
 
 export const defaultDishList: Dish[] = [
