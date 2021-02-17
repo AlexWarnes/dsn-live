@@ -89,12 +89,12 @@
           <StationSummaryChart stationSummary={goldstoneSummary} />
         </div>
         <div class="summary-box">
-          <h4 class="station-name">MADRID</h4>
-          <StationSummaryChart stationSummary={madridSummary} />
-        </div>
-        <div class="summary-box">
           <h4 class="station-name">CANBERRA</h4>
           <StationSummaryChart stationSummary={canberraSummary} />
+        </div>
+        <div class="summary-box">
+          <h4 class="station-name">MADRID</h4>
+          <StationSummaryChart stationSummary={madridSummary} />
         </div>
       </div>
     </article>
