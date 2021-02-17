@@ -646,6 +646,26 @@ export const spacecraftMap = {
     longName: "Testing",
     sources: [],
   } as Spacecraft,
+  135: {
+    id: "135",
+    shortName: "DART",
+    longName: "Double Asteroid Redirection Test",
+    sources: [
+      {
+        title: "Double Asteroid Redirection Test, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/Double_Asteroid_Redirection_Test",
+      },
+      {
+        title: "Planetary Defense, DART, NASA",
+        url: "https://www.nasa.gov/planetarydefense/dart",
+      },
+      {
+        title:
+          "Double Asteroid Redirection Test, Johns Hopkins Applied Physics Laboratory",
+        url: "https://dart.jhuapl.edu/",
+      },
+    ],
+  } as Spacecraft,
 };
 
 export const defaultDishList: Dish[] = [
