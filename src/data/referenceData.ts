@@ -696,6 +696,31 @@ export const spacecraftMap = {
       },
     ],
   } as Spacecraft,
+  60: {
+    id: "60",
+    shortName: "XMM",
+    longName: "XMM-Newton",
+    sources: [
+      {
+        title: "XMM-Newton, Wikipedia",
+        url: "https://en.wikipedia.org/wiki/XMM-Newton",
+      },
+      {
+        title: "XMM-Newton, European Space Agency (ESA)",
+        url: "https://sci.esa.int/web/xmm-newton",
+      },
+      {
+        title: "XMM-Newton, NASA",
+        url: "https://www.nasa.gov/xmm-newton",
+      },
+    ],
+  } as Spacecraft,
+};
+
+export const stationMap = {
+  Goldstone: {},
+  Canberra: {},
+  Madrid: {},
 };
 
 export const defaultDishList: Dish[] = [
