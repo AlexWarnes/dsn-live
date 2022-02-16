@@ -1,4 +1,4 @@
-export interface DSNData {
+export interface DSNDataInterface {
   dishes: Dish[];
   stations: Station[] | any[]; //TODO: Model stations
   timestamp: string;

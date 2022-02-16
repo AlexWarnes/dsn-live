@@ -236,7 +236,10 @@
   }
 
   .dish-card-container
-    :global(.bx--content-switcher-btn:first-child, .bx--content-switcher-btn:last-child) {
+    :global(.bx--content-switcher-btn:first-child) {
+    border-radius: 0;
+  }
+    :global(.bx--content-switcher-btn:last-child) {
     border-radius: 0;
   }
 

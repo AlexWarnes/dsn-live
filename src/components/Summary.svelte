@@ -1,23 +1,26 @@
+<script context="module">
+	// Should be written like this now
+	export async function handle({ event, resolve }) {
+		return await resolve(event, {
+			ssr: false
+		});
+	}
+</script>
 <script lang="ts">
-  import type { DSNData } from "../data/Models";
+  import type { DSNDataInterface } from "../data/Models";
   import StationSummaryChart from "./StationSummaryChart.svelte";
   import {
     Tag,
     Accordion,
     AccordionItem,
     InlineLoading,
-    DataTable,
-    Toolbar,
-    ToolbarContent,
   } from "carbon-components-svelte";
-  import ArrowDown16 from "carbon-icons-svelte/lib/ArrowDown16";
-  import ArrowUp16 from "carbon-icons-svelte/lib/ArrowUp16";
 
-  import { fly, fade } from "svelte/transition";
+  import { fly } from "svelte/transition";
 
   import { getSummarizedDataByStation } from "../util/utils";
 
-  export let DSNData: DSNData = null;
+  export let DSNData: DSNDataInterface = null;
   export let latestRequest: string = "";
   export let nextRequest: number = 0;
 

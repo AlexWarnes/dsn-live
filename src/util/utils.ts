@@ -2,7 +2,7 @@ import xml2json from "../util/xml2json";
 import type {
   Dish,
   DownSignalEntry,
-  DSNData,
+  DSNDataInterface,
   DSNResponse,
   ResponseDish,
   Spacecraft,
@@ -45,12 +45,12 @@ export function removeAtSign(value: string): string {
   return value.replace("@", "");
 }
 
-export async function processDSNResponse(response: any): Promise<DSNData> {
+export async function processDSNResponse(response: any): Promise<DSNDataInterface> {
   const textResponse = await response.text();
   const jsonResponse = parseDSNData(textResponse);
 
   // Merge data into Default Data (shows all dishes, even inactive)
-  const DSNDataForDisplay: DSNData = generateDSNDataForUI(jsonResponse);
+  const DSNDataForDisplay: DSNDataInterface = generateDSNDataForUI(jsonResponse);
   console.log(
     "%cDSNDataForDisplay",
     "background: #333333; color: white; padding: 3px;",
@@ -68,7 +68,7 @@ function parseDSNData(data): DSNResponse {
 function generateDSNDataForUI(
   jsonData: DSNResponse,
   defaultData: Dish[] = defaultDishList
-): DSNData {
+): DSNDataInterface {
   // updat the dish list by mapping over the default data, and grabbing from the DSN data if present
   const { dish: dishes, station: stations, timestamp } = jsonData;
   // This will become type DSNData
@@ -237,7 +237,7 @@ export const determineSignalStatus = (
 };
 
 export const updateStationCount = (
-  data: DSNData
+  data: DSNDataInterface
 ): {
   dishCountByStation: {
     Goldstone: number;
@@ -270,7 +270,7 @@ export const updateStationCount = (
 };
 
 export const getUniqueTargetList = (
-  data: DSNData
+  data: DSNDataInterface
 ): { id: string; name: string; longName: string }[] => {
   if (!data || data["dishes"].length === 0) {
     return [];
@@ -296,7 +296,7 @@ export const getUniqueTargetList = (
 
 export const getSummarizedDataByStation = (
   stationName: "goldstone" | "madrid" | "canberra",
-  dsnData: DSNData
+  dsnData: DSNDataInterface
 ): any[] => {
   const { dishes, stations } = dsnData;
   // TODO: Add station local time
