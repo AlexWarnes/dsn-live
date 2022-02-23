@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { getSpacecraftDetails } from "../util/utils";
-  import { DataTable, Button } from "carbon-components-svelte";
+  import { DataTable } from "carbon-components-svelte";
   import { fly } from "svelte/transition";
 
   import type { DownSignalEntry, UpSignalEntry } from "../data/Models";

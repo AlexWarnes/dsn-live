@@ -9,11 +9,12 @@
 
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Loading } from 'carbon-components-svelte';
 	import Summary from '../components/Summary.svelte';
 	import DishCard from '../components/DishCard.svelte';
 	import { processDSNResponse } from '../util/utils';
 	import type { DSNDataInterface } from '../data/Models';
+	import DashboardLoading from '../components/DashboardLoading.svelte';
+	import { dishPassesFilters, filters } from '../data/stores';
 
 	const dsnURL: string = 'https://eyes.nasa.gov/dsn/data/dsn.xml';
 	let latestRequest: string = '';
@@ -62,11 +63,13 @@
 	<Summary {DSNData} {latestRequest} {nextRequest} />
 	<div class="dish-grid">
 		{#each DSNData['dishes'] as dish (dish['@name'])}
-			<DishCard {dish} updating={nextRequest <= 0} />
+			{#if dishPassesFilters(dish, $filters)}
+				<DishCard {dish} updating={nextRequest <= 0} />
+			{/if}
 		{/each}
 	</div>
 {:else}
-	<Loading />
+	<DashboardLoading initialDataLoaded={!!DSNData} />
 {/if}
 
 <style>

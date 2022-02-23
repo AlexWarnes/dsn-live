@@ -1,7 +1,6 @@
 <script>
 	import 'carbon-components-svelte/css/g100.css';
 	import '../styles/global.css';
-
 	import {
 		Header,
 		Button,
@@ -11,9 +10,9 @@
 		HeaderPanelLinks,
 		HeaderPanelLink
 	} from 'carbon-components-svelte';
-	import SatelliteRadar24 from 'carbon-icons-svelte/lib/SatelliteRadar24';
-	import Notebook24 from 'carbon-icons-svelte/lib/Notebook24';
-	import EarthEuropeAfrica24 from 'carbon-icons-svelte/lib/EarthEuropeAfrica24';
+	import { SatelliteRadar24, Notebook24, EarthEuropeAfrica24 } from 'carbon-icons-svelte';
+	// import {  } from 'carbon-icons-svelte';
+	// import  from 'carbon-icons-svelte/lib/EarthEuropeAfrica24';
 	let isOpen = false;
 	let vw;
 </script>
@@ -62,30 +61,30 @@
 </main>
 
 <style>
-  main {
-    padding: 60px 0 0;
-    min-height: 100%;
-    max-height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  .flex-spacer {
-    flex-grow: 1;
-  }
+	main {
+		padding: 60px 0 0;
+		min-height: 100%;
+		max-height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+	.flex-spacer {
+		flex-grow: 1;
+	}
 
-  .nav-btn-wrapper :global(a) {
-    color: var(--white-1);
-    text-decoration: none;
-    font-weight: 600;
-    margin: 0 12px;
-  }
+	.nav-btn-wrapper :global(a) {
+		color: var(--white-1);
+		text-decoration: none;
+		font-weight: 600;
+		margin: 0 12px;
+	}
 
-  .nav-menu-wrapper :global(a) {
-    display: flex;
-    align-items: center;
-    margin: 12px 0;
-  }
-  .nav-menu-wrapper :global(svg) {
-    margin: 0 10px 0 0;
-  }
+	.nav-menu-wrapper :global(a) {
+		display: flex;
+		align-items: center;
+		margin: 12px 0;
+	}
+	.nav-menu-wrapper :global(svg) {
+		margin: 0 10px 0 0;
+	}
 </style>
