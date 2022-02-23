@@ -1,11 +1,3 @@
-<script context="module">
-	// Should be written like this now
-	export async function handle({ event, resolve }) {
-		return await resolve(event, {
-			ssr: false
-		});
-	}
-</script>
 <script lang="ts">
   import type { DSNDataInterface } from "../data/Models";
   import StationSummaryChart from "./StationSummaryChart.svelte";

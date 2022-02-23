@@ -14,7 +14,12 @@ import {
   dishToStationMap,
   spacecraftMap,
 } from "../data/referenceData";
-const parser = new DOMParser();
+import { browser } from "$app/env";
+
+let parser;
+if(browser) {
+  parser = new DOMParser();
+}
 
 export function getStationByDishName(
   dishName: string
@@ -60,9 +65,11 @@ export async function processDSNResponse(response: any): Promise<DSNDataInterfac
 }
 
 function parseDSNData(data): DSNResponse {
-  const xmlDoc = parser.parseFromString(data, "text/xml");
-  const { dsn } = JSON.parse(xml2json(xmlDoc, ""));
-  return dsn;
+  if(browser){
+    const xmlDoc = parser.parseFromString(data, "text/xml");
+    const { dsn } = JSON.parse(xml2json(xmlDoc, ""));
+    return dsn;
+  }
 }
 
 function generateDSNDataForUI(
