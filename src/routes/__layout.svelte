@@ -31,7 +31,7 @@
 	</Header>
 {:else}
 	<!-- MOBILE -->
-	<Header platformName="Deep Space Network" href="/#/">
+	<Header platformName="Deep Space Network" href="/">
 		<div class="flex-spacer" />
 		<HeaderUtilities>
 			<HeaderAction bind:isOpen>
