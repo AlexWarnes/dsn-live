@@ -9,6 +9,8 @@ export interface DSNResponse {
   timestamp: string;
 }
 
+export type Station_Cap = 'GOLDSTONE' | 'CANBERRA' | 'MADRID';
+
 // Dish interface after serializing response data
 export interface Dish {
   "@name": string;
@@ -90,4 +92,21 @@ export interface TargetEntry {
   "@uplegRange": string;
   "@downlegRange": string;
   "@rtlt": string;
+}
+
+export interface NotificationData {
+  spacecraft: string;
+  dish: string;
+  station: string;
+}
+
+export interface NotificationTrigger {
+  id: string;
+  spacecraft: string[];
+  dishes: string[];
+  stations: Station_Cap[];
+}
+
+export interface TargetDiffByDish {
+  [key: string]: string[];
 }

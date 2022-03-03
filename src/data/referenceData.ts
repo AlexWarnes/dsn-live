@@ -9,11 +9,18 @@ export const dishToStationMap = {
 	DSS35: 'Canberra',
 	DSS36: 'Canberra',
 	DSS43: 'Canberra',
+	DSS53: 'Madrid',
 	DSS54: 'Madrid',
 	DSS55: 'Madrid',
 	DSS56: 'Madrid',
 	DSS65: 'Madrid',
 	DSS63: 'Madrid'
+};
+
+export const stationToDishMap = {
+	GOLDSTONE: ['DSS26', 'DSS25', 'DSS24', 'DSS14'],
+	CANBERRA: ['DSS34', 'DSS35', 'DSS36', 'DSS43'],
+	MADRID: ['DSS53', 'DSS54', 'DSS55', 'DSS56', 'DSS65', 'DSS63']
 };
 
 export const spacecraftMap = {
@@ -881,6 +888,21 @@ export const defaultDishList: Dish[] = [
 		downSignal: [],
 		upSignal: [],
 		metadata: { status: 'OFFLINE', station: 'Canberra' }
+	},
+	{
+		'@name': 'DSS53',
+		'@azimuthAngle': null,
+		'@elevationAngle': null,
+		'@windSpeed': null,
+		'@isMSPA': null,
+		'@isArray': null,
+		'@isDDOR': null,
+		'@created': null,
+		'@updated': null,
+		targets: [],
+		downSignal: [],
+		upSignal: [],
+		metadata: { status: 'OFFLINE', station: 'Madrid' }
 	},
 	{
 		'@name': 'DSS54',

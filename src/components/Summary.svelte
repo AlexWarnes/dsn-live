@@ -3,6 +3,7 @@
 	import { filters } from '../data/stores';
 	import StationSummaryChart from './StationSummaryChart.svelte';
 	import DataFilters from './DataFilters.svelte';
+	import BrowserNotifications from './BrowserNotifications.svelte';
 	import { Accordion, AccordionItem, InlineLoading } from 'carbon-components-svelte';
 
 	import { fly } from 'svelte/transition';
@@ -54,9 +55,13 @@
 			</AccordionItem>
 			<AccordionItem>
 				<div slot="title">
-					<h3>Data Filters</h3>
+					<h3>Data Filters & Notifications</h3>
 				</div>
-        <DataFilters />
+				<div class="filter-notify-row">
+
+					<DataFilters />
+					<BrowserNotifications />
+				</div>
 			</AccordionItem>
 			<AccordionItem style="padding-right: 0;" open>
 				<div slot="title">
@@ -113,6 +118,18 @@
 	}
 
 	.station-summary-flex-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		margin: 0 -1rem;
+	}
+
+	.filter-notify-row {
+		width: 100%;
+		min-height: 18rem;
+		max-height: 32rem;
+		overflow: hidden;
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;

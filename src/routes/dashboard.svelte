@@ -11,16 +11,18 @@
 	import { onMount } from 'svelte';
 	import Summary from '../components/Summary.svelte';
 	import DishCard from '../components/DishCard.svelte';
-	import { processDSNResponse } from '../util/utils';
+	import { diffDataByDish, processDSNResponse } from '../util/utils';
 	import type { DSNDataInterface } from '../data/Models';
 	import DashboardLoading from '../components/DashboardLoading.svelte';
-	import { dishPassesFilters, filters } from '../data/stores';
+	import { dishPassesFilters, filters, targetDiffByDish } from '../data/stores';
+// import { generateMockData } from '../data/mockData';
 
 	const dsnURL: string = 'https://eyes.nasa.gov/dsn/data/dsn.xml';
 	let latestRequest: string = '';
 	let requestIntervalUnits = 15;
 	let nextRequest: number = 0;
 
+	// let DSNData: DSNDataInterface = generateMockData();
 	let DSNData: DSNDataInterface = null;
 	// Start making requests based on interval
 	onMount(() => {
@@ -42,7 +44,12 @@
 		let requestInterval = setInterval(async () => {
 			if (nextRequest <= 0) {
 				nextRequest = requestIntervalUnits;
-				DSNData = await getDSNData();
+				const nextData = await getDSNData();
+				
+				// Update the diff to determine notifications
+				$targetDiffByDish = diffDataByDish(DSNData, nextData);
+
+				DSNData = nextData;
 			} else {
 				nextRequest -= 1;
 			}
@@ -53,6 +60,7 @@
 			clearInterval(requestInterval);
 		};
 	});
+
 </script>
 
 <svelte:head>
