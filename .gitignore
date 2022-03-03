@@ -8,3 +8,5 @@ node_modules
 !.env.example
 node_modules
 .vscode
+/build
+.netlify
