@@ -1,12 +1,12 @@
-import type { DSNData } from "./Models";
+import type { DSNDataInterface } from "./Models";
 
-export const generateMockData = (): DSNData => {
+export const generateMockData = (): DSNDataInterface => {
   console.log("new mock data");
   let angle = String(Math.floor(Math.random() * 90));
   return mockDSNDataForDisplay;
 };
 
-export const mockDSNDataForDisplay: DSNData = {
+export const mockDSNDataForDisplay: DSNDataInterface = {
   dishes: [
     {
       "@name": "DSS14",
@@ -338,6 +338,24 @@ export const mockDSNDataForDisplay: DSNData = {
       metadata: {
         status: "OFFLINE",
         station: "Canberra",
+      },
+    },
+    {
+      "@name": "DSS53",
+      "@azimuthAngle": null,
+      "@elevationAngle": null,
+      "@windSpeed": null,
+      "@isMSPA": null,
+      "@isArray": null,
+      "@isDDOR": null,
+      "@created": null,
+      "@updated": null,
+      targets: [],
+      downSignal: [],
+      upSignal: [],
+      metadata: {
+        status: "OFFLINE",
+        station: "Madrid",
       },
     },
     {

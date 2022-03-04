@@ -1,14 +1,15 @@
 <script lang="ts">
-  import { Button, Icon, Link } from "carbon-components-svelte";
+  import { Button, Link } from "carbon-components-svelte";
   import Launch16 from "carbon-icons-svelte/lib/Launch16";
   import LogoGithub32 from "carbon-icons-svelte/lib/LogoGithub32";
-  //<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 </script>
-
+<svelte:head>
+	<title>DSN Live | About</title>
+</svelte:head>
 <section>
   <h2>What is the Deep Space Network?</h2>
   <p class="quote-text">
-    “The Deep Space Network (DSN) is NASA’s international array of giant radio
+    “The Deep Space Network (DSN) is NASA's international array of giant radio
     antennas that supports interplanetary spacecraft missions, plus a few that
     orbit Earth. The DSN also provides radar and radio astronomy observations
     that improve our understanding of the solar system and the larger universe.”
@@ -59,7 +60,7 @@
       <h3>Framework</h3>
       <p>
         The best way to learn a new tool is to build something with it. Made
-        with Svelte.
+        with Svelte and SvelteKit.
       </p>
       <Button
         kind="tertiary"
@@ -82,11 +83,11 @@
     <li>
       <h3>Design</h3>
       <p>
-        <Link href="https://carbon-svelte.vercel.app/" target="_blank"
-          >Carbon Components<Icon render={Launch16} /></Link
+        <Link href="https://carbon-components-svelte.onrender.com/" target="_blank"
+          >Carbon Components<Launch16 /></Link
         > and <Link
-          href="https://ibm.github.io/carbon-icons-svelte/"
-          target="_blank">Carbon Icons<Icon render={Launch16} /></Link
+          href="https://carbon-icons-svelte.onrender.com/"
+          target="_blank">Carbon Icons<Launch16 /></Link
         >
       </p>
     </li>
@@ -96,11 +97,11 @@
         Icon made by <Link
           href="https://www.freepik.com"
           target="_blank"
-          title="Freepik">Freepik<Icon render={Launch16} /></Link
+          title="Freepik">Freepik<Launch16 /></Link
         >
         from
         <Link href="https://www.flaticon.com/" target="_blank" title="Flaticon"
-          >Flaticon<Icon render={Launch16} />
+          >Flaticon<Launch16 />
         </Link>
       </p>
     </li>
