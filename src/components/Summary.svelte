@@ -11,7 +11,6 @@
 	import { getSummarizedDataByStation } from '../util/utils';
 
 	export let DSNData: DSNDataInterface = null;
-	export let latestRequest: string = '';
 	export let nextRequest: number = 0;
 
 	$: dataTimestamp =
@@ -26,7 +25,6 @@
 	{#if DSNData}
 		<Accordion>
 			<div>
-				<!-- <h3>Data Timestamp:</h3> -->
 				<div class="time-row">
 					<p class="timestamp">{dataTimestamp}</p>
 
