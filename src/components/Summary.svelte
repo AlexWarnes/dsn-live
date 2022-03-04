@@ -25,40 +25,35 @@
 <section class="summary-container">
 	{#if DSNData}
 		<Accordion>
-			<AccordionItem>
-				<div slot="title">
-					<h3>Data Timestamp:</h3>
-					<div class="time-row">
-						<p>{dataTimestamp}</p>
+			<div>
+				<!-- <h3>Data Timestamp:</h3> -->
+				<div class="time-row">
+					<p class="timestamp">{dataTimestamp}</p>
 
-						{#if nextRequest}
-							<p
-								class="abs right update-text"
-								in:fly={{ x: -10, duration: 250 }}
-								out:fly={{ x: 10, duration: 250 }}
-							>
-								Update: {nextRequest + 's'}
-							</p>
-						{:else}
-							<span
-								class="abs right"
-								in:fly={{ x: -10, duration: 250 }}
-								out:fly={{ x: 10, duration: 250 }}
-							>
-								<InlineLoading description="Updating..." />
-							</span>
-						{/if}
-					</div>
+					{#if nextRequest}
+						<p
+							class="abs right update-text"
+							in:fly={{ x: -10, duration: 250 }}
+							out:fly={{ x: 10, duration: 250 }}
+						>
+							Update: {nextRequest + 's'}
+						</p>
+					{:else}
+						<span
+							class="abs right"
+							in:fly={{ x: -10, duration: 250 }}
+							out:fly={{ x: 10, duration: 250 }}
+						>
+							<InlineLoading description="Updating..." />
+						</span>
+					{/if}
 				</div>
-				<p>Latest Request: {latestRequest}</p>
-				<p>Next Request: {nextRequest ? nextRequest + 's' : 'Loading...'}</p>
-			</AccordionItem>
+			</div>
 			<AccordionItem>
 				<div slot="title">
 					<h3>Data Filters & Notifications</h3>
 				</div>
 				<div class="filter-notify-row">
-
 					<DataFilters />
 					<BrowserNotifications />
 				</div>
@@ -70,15 +65,24 @@
 				<!-- Data Table -->
 				<article class="station-summary-container">
 					<div class="station-summary-flex-row">
-						<div class="summary-box" style:opacity={$filters.visibleStations.includes('GOLDSTONE') ? 1 : 0.5}>
+						<div
+							class="summary-box"
+							style:opacity={$filters.visibleStations.includes('GOLDSTONE') ? 1 : 0.5}
+						>
 							<h4 class="station-name">GOLDSTONE</h4>
 							<StationSummaryChart stationSummary={goldstoneSummary} />
 						</div>
-						<div class="summary-box" style:opacity={$filters.visibleStations.includes('CANBERRA') ? 1 : 0.5}>
+						<div
+							class="summary-box"
+							style:opacity={$filters.visibleStations.includes('CANBERRA') ? 1 : 0.5}
+						>
 							<h4 class="station-name">CANBERRA</h4>
 							<StationSummaryChart stationSummary={canberraSummary} />
 						</div>
-						<div class="summary-box" style:opacity={$filters.visibleStations.includes('MADRID') ? 1 : 0.5}>
+						<div
+							class="summary-box"
+							style:opacity={$filters.visibleStations.includes('MADRID') ? 1 : 0.5}
+						>
 							<h4 class="station-name">MADRID</h4>
 							<StationSummaryChart stationSummary={madridSummary} />
 						</div>
@@ -107,6 +111,11 @@
 		justify-content: space-between;
 		align-items: center;
 		position: relative;
+		padding: 0 1rem .5rem;
+	}
+
+	.time-row .timestamp {
+		font-size: .75rem;
 	}
 
 	.time-row .update-text {
@@ -136,24 +145,8 @@
 		flex-wrap: wrap;
 	}
 
-	.targets-row {
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-	}
-
-	.targets-row .selection {
-		margin: 0 0 0 15px;
-	}
-
 	.abs.right {
 		right: 0;
-	}
-
-	.target-chip-container {
-		max-width: 320px;
-		overflow: auto;
-		padding: 15px 0 20%;
 	}
 
 	.summary-box {

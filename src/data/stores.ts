@@ -8,7 +8,6 @@ export const filters = writable({
 	onlyShowActiveDishes: false
 });
 
-export const permissionToNotify = writable<'default' | 'denied' | 'granted'>('default');
 export const notificationTriggers = writable<NotificationTrigger[]>([]);
 if(browser && JSON.parse(localStorage.getItem('notificationTriggers'))){
   notificationTriggers.set(JSON.parse(localStorage.getItem('notificationTriggers')))

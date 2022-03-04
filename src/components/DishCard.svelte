@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Dish, Source, Spacecraft } from '../data/Models';
+	import type { Dish, Spacecraft } from '../data/Models';
 	import {
 		determineSignalStatus,
 		determineTargetStatus,
@@ -16,7 +16,9 @@
 		Switch,
 		InlineLoading
 	} from 'carbon-components-svelte';
-	import { ArrowDown16, ArrowUp16, Satellite16 } from 'carbon-icons-svelte';
+	import ArrowDown16 from 'carbon-icons-svelte/lib/ArrowDown16'
+	import ArrowUp16 from 'carbon-icons-svelte/lib/ArrowUp16'
+	import Satellite16 from 'carbon-icons-svelte/lib/Satellite16'
 	import TargetDetails from './TargetDetails.svelte';
 	import SignalDetails from './SignalDetails.svelte';
 

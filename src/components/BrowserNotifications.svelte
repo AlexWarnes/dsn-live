@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { Button, MultiSelect, Tile } from 'carbon-components-svelte';
-	import type { NotificationData, NotificationTrigger } from '../data/Models';
-	import { spacecraftMap } from '../data/referenceData';
+	import { Button } from 'carbon-components-svelte';
+	import type { NotificationData } from '../data/Models';
 	import Add32 from 'carbon-icons-svelte/lib/Add32';
 	import Delete16 from 'carbon-icons-svelte/lib/Delete16';
 	import {
@@ -10,28 +9,25 @@
 		renderStationAndDishText
 	} from '../data/notification.service';
 
-	import { onMount } from 'svelte';
-
-	// import { browser } from "$app/env";
-	import { notifications, notificationTriggers, permissionToNotify } from '../data/stores';
+	import { notifications, notificationTriggers } from '../data/stores';
 	import NotificationFormModal from './modals/NotificationFormModal.svelte';
 
 	let showTriggerModal = false;
-	onMount(() => {
-		$permissionToNotify = readPermissionToNotify();
-	});
 
 	$: localStorage.setItem('notificationTriggers', JSON.stringify($notificationTriggers));
+	$: if ($notificationTriggers.length > 0) {
+		if (
+			window.Notification.permission !== 'denied' &&
+			window.Notification.permission !== 'granted'
+		) {
+			window.Notification.requestPermission().then((p) => {
+				console.log('Permission to notify: ', p);
+			});
+		}
+	}
 
-	// if(browser){
-	//   if(!("Notification" in window)){
-	//     // TODO: notifications are not supported
-	//   }
-
-	//   else if (Notification.permission === "granted"/* TODO: && $userNotifications.length */) {
-
-	//   }
-
+	/**
+	 * TODO: SAVE FOR LATER
 	function notificationsAreSupported(): boolean {
 		return 'Notification' in window;
 	}
@@ -43,6 +39,7 @@
 	function userHasNotifications(): boolean {
 		return $notificationTriggers.length > 0;
 	}
+	 */
 
 	function notifyUser(notification: NotificationData) {
 		const options = {
@@ -61,24 +58,10 @@
 		}
 	}
 
-	function requestPermission(): void {
-		window.Notification.requestPermission().then((p) => {
-			$permissionToNotify = p;
-		});
-	}
-
-	// check if user has ntfx in localStorage
-	// if so check permission status and $store for ref THEN request if needed
-	// if not, $store for ref THEN do nothing
-	// when ntfx created
-	// if no permission, remind them
-	// do nothing
-	// }
 	function deleteTrigger(id): void {
 		notificationTriggers.update((current) => {
 			return current.filter((trigger) => trigger.id !== id);
 		});
-		// localStorage.setItem("notificationTriggers", JSON.stringify($notificationTriggers));
 	}
 
 	$: for (let n of $notifications) {

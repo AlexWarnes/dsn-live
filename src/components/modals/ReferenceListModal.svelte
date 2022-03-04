@@ -10,7 +10,7 @@
     Tag,
   } from "carbon-components-svelte";
   import Launch16 from "carbon-icons-svelte/lib/Launch16";
-  import type { Source, Spacecraft } from "../../data/Models";
+  import type { Spacecraft } from "../../data/Models";
 
   // Inputs
   export let targetDetails: Spacecraft[] = [];
@@ -30,7 +30,7 @@
         <div class="source-row">
           <Link href={source.url}
             >{source.title}
-            <Icon style="margin: 0 0 0 5px" render={Launch16} /></Link
+            <Launch16 style="margin: 0 0 0 5px" /></Link
           >
         </div>
         {#if target["sources"].length === 0}

@@ -4,15 +4,14 @@
 	import {
 		Header,
 		Button,
-		Icon,
 		HeaderUtilities,
 		HeaderAction,
 		HeaderPanelLinks,
 		HeaderPanelLink
 	} from 'carbon-components-svelte';
-	import { SatelliteRadar24, Notebook24, EarthEuropeAfrica24 } from 'carbon-icons-svelte';
-	// import {  } from 'carbon-icons-svelte';
-	// import  from 'carbon-icons-svelte/lib/EarthEuropeAfrica24';
+	import SatelliteRadar24 from 'carbon-icons-svelte/lib/SatelliteRadar24';
+	import Notebook24 from 'carbon-icons-svelte/lib/Notebook24';
+	import EarthEuropeAfrica24 from 'carbon-icons-svelte/lib/EarthEuropeAfrica24';
 	let isOpen = false;
 	let vw;
 </script>
@@ -38,15 +37,15 @@
 				<HeaderPanelLinks>
 					<span class="nav-menu-wrapper">
 						<HeaderPanelLink href="/">
-							<Icon render={EarthEuropeAfrica24} />
+							<EarthEuropeAfrica24 />
 							HOME</HeaderPanelLink
 						>
 						<HeaderPanelLink href="/dashboard">
-							<Icon render={SatelliteRadar24} />
+							<SatelliteRadar24 />
 							DASHBOARD</HeaderPanelLink
 						>
 						<HeaderPanelLink href="/about">
-							<Icon render={Notebook24} />
+							<Notebook24 />
 							ABOUT</HeaderPanelLink
 						>
 					</span></HeaderPanelLinks

@@ -1,13 +1,10 @@
 <script lang="ts">
 	import {
-		Icon,
 		ComposedModal,
 		ModalHeader,
 		ModalBody,
-		Link,
 		ModalFooter,
 		Button,
-		Tag,
 		MultiSelect,
 		InlineNotification
 	} from 'carbon-components-svelte';
@@ -70,7 +67,6 @@
 		};
 		notificationTriggers.update((current) => [newTrigger, ...current]);
 
-		// localStorage.setItem("notificationTriggers", JSON.stringify($notificationTriggers));
 		// Close the form
 		open = false;
 

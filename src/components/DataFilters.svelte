@@ -21,4 +21,8 @@
 		font-size: 1.25rem;
 		margin: 1rem 0 0.5rem;
 	}
+
+	.filter-container {
+		padding: 0 0 0 .25rem;
+	}
 </style>

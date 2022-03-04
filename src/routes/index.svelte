@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, Icon, Link } from 'carbon-components-svelte';
+	import { Button, Link } from 'carbon-components-svelte';
 	import Launch16 from 'carbon-icons-svelte/lib/Launch16';
 	import LogoGithub32 from 'carbon-icons-svelte/lib/LogoGithub32';
 	import ArrowRight24 from 'carbon-icons-svelte/lib/ArrowRight24';
